@@ -1,4 +1,4 @@
-#include "../ftd2xx.h"
+#include "ftd2xx.h"
 #include <setjmp.h>
 
 #define TRY(exception, code) if ( (code = setjmp(exception)) == 0 )
@@ -6,6 +6,7 @@
 #define THROW(exception, code) longjmp(exception, code);
 #define FTC_TRY(code) TRY(ftcException, code)
 #define FTC_THROW(code) THROW(ftcException, code)
+#define FTC_THROWE(code, status) { ftcStatus=status; FTC_THROW(code); }
 
 extern jmp_buf ftcException;
 extern FT_STATUS ftcStatus;
@@ -33,11 +34,15 @@ enum {
 	
 	FTC_SET_BIT_MODE,
 	
-	FTC_OTHER
+	FTC_SET_VID_PID,
+
+	FTC_OTHER,
+	
+	FTC_USER_START=0x4000
 	
 };
 
-inline FT_HANDLE FTC_Open(int deviceNumber)
+static inline FT_HANDLE FTC_Open(int deviceNumber)
 {
 	 FT_HANDLE ftHandle;
 	 if(!FT_SUCCESS(ftcStatus = FT_Open(deviceNumber, &ftHandle))) 
@@ -45,7 +50,7 @@ inline FT_HANDLE FTC_Open(int deviceNumber)
 	 return ftHandle;
 }
 
-inline	FT_HANDLE FTC_OpenEx(PVOID pArg1, DWORD Flags)
+static inline	FT_HANDLE FTC_OpenEx(PVOID pArg1, DWORD Flags)
 {
 	 FT_HANDLE ftHandle;
 	 if(!FT_SUCCESS(ftcStatus = FT_OpenEx(pArg1, Flags, &ftHandle))) 
@@ -53,19 +58,19 @@ inline	FT_HANDLE FTC_OpenEx(PVOID pArg1, DWORD Flags)
 	 return ftHandle;
 }
 
-inline void FTC_ListDevices(PVOID pArg1, PVOID pArg2, DWORD Flags)
+static inline void FTC_ListDevices(PVOID pArg1, PVOID pArg2, DWORD Flags)
 {
 	 if(!FT_SUCCESS(ftcStatus = FT_ListDevices(pArg1, pArg2, Flags))) 
 		FTC_THROW(FTC_LIST_DEVICES);
 }
 
-inline void FTC_Close(FT_HANDLE ftHandle)
+static inline void FTC_Close(FT_HANDLE ftHandle)
 {
 	 if(!FT_SUCCESS(ftcStatus = FT_Close(ftHandle))) 
 		FTC_THROW(FTC_CLOSE);
 }
 
-inline DWORD FTC_Read(FT_HANDLE ftHandle, LPVOID lpBuffer, DWORD dwBytesToRead)
+static inline DWORD FTC_Read(FT_HANDLE ftHandle, LPVOID lpBuffer, DWORD dwBytesToRead)
 {
 	 DWORD dwBytesReturned;
 	 if(!FT_SUCCESS(ftcStatus = FT_Read(ftHandle, lpBuffer, dwBytesToRead, &dwBytesReturned))) 
@@ -75,7 +80,7 @@ inline DWORD FTC_Read(FT_HANDLE ftHandle, LPVOID lpBuffer, DWORD dwBytesToRead)
 	 return dwBytesReturned;
 }
 
-inline DWORD FTC_Write(FT_HANDLE ftHandle, LPVOID lpBuffer, DWORD dwBytesToWrite)
+static inline DWORD FTC_Write(FT_HANDLE ftHandle, LPVOID lpBuffer, DWORD dwBytesToWrite)
 {
 	 DWORD dwBytesWritten;
 	 if(!FT_SUCCESS(ftcStatus = FT_Write(ftHandle, lpBuffer, dwBytesToWrite, &dwBytesWritten))) 
@@ -85,7 +90,7 @@ inline DWORD FTC_Write(FT_HANDLE ftHandle, LPVOID lpBuffer, DWORD dwBytesToWrite
 	 return dwBytesWritten;
 }
 
-inline DWORD FTC_IoCtl(FT_HANDLE ftHandle, DWORD dwIoControlCode, LPVOID lpInBuf, DWORD nInBufSize, LPVOID lpOutBuf, DWORD nOutBufSize, LPOVERLAPPED lpOverlapped)
+static inline DWORD FTC_IoCtl(FT_HANDLE ftHandle, DWORD dwIoControlCode, LPVOID lpInBuf, DWORD nInBufSize, LPVOID lpOutBuf, DWORD nOutBufSize, LPOVERLAPPED lpOverlapped)
 {
 	 DWORD dwBytesReturned;
 	 if(!FT_SUCCESS(ftcStatus = FT_IoCtl(ftHandle, dwIoControlCode, lpInBuf, nInBufSize, lpOutBuf, nOutBufSize, &dwBytesReturned, lpOverlapped))) 
@@ -93,56 +98,56 @@ inline DWORD FTC_IoCtl(FT_HANDLE ftHandle, DWORD dwIoControlCode, LPVOID lpInBuf
 	 return dwBytesReturned;
 }
 
-inline void FTC_SetBaudRate(FT_HANDLE ftHandle, ULONG BaudRate)
+static inline void FTC_SetBaudRate(FT_HANDLE ftHandle, ULONG BaudRate)
 {
 	 if(!FT_SUCCESS(ftcStatus = FT_SetBaudRate(ftHandle, BaudRate))) 
 		FTC_THROW(FTC_SET_BAUD_RATE);
 }
 
-inline void FTC_SetDivisor(FT_HANDLE ftHandle, USHORT Divisor)
+static inline void FTC_SetDivisor(FT_HANDLE ftHandle, USHORT Divisor)
 {
 	 if(!FT_SUCCESS(ftcStatus = FT_SetDivisor(ftHandle, Divisor))) 
 		FTC_THROW(FTC_SET_DIVISOR);
 }
 
-inline void FTC_SetDataCharacteristics(FT_HANDLE ftHandle, UCHAR WordLength, UCHAR StopBits, UCHAR Parity)
+static inline void FTC_SetDataCharacteristics(FT_HANDLE ftHandle, UCHAR WordLength, UCHAR StopBits, UCHAR Parity)
 {
 	 if(!FT_SUCCESS(ftcStatus = FT_SetDataCharacteristics(ftHandle, WordLength, StopBits, Parity))) 
 		FTC_THROW(FTC_SET_DATA_CHARACTERISTICS);
 }
 
 
-inline void FTC_SetFlowControl(FT_HANDLE ftHandle, USHORT FlowControl, UCHAR XonChar, UCHAR XoffChar)
+static inline void FTC_SetFlowControl(FT_HANDLE ftHandle, USHORT FlowControl, UCHAR XonChar, UCHAR XoffChar)
 {
 	 if(!FT_SUCCESS(ftcStatus = FT_SetFlowControl(ftHandle, FlowControl, XonChar, XoffChar))) 
 		FTC_THROW(FTC_SET_FLOW_CONTROL);
 }
 
-inline void FTC_ResetDevice(FT_HANDLE ftHandle)
+static inline void FTC_ResetDevice(FT_HANDLE ftHandle)
 {
 	 if(!FT_SUCCESS(ftcStatus = FT_ResetDevice(ftHandle))) 
 		FTC_THROW(FTC_RESET_DEVICE);
 }
 
-inline void FTC_SetDtr(FT_HANDLE ftHandle)
+static inline void FTC_SetDtr(FT_HANDLE ftHandle)
 {
 	 if(!FT_SUCCESS(ftcStatus = FT_SetDtr(ftHandle))) 
 		FTC_THROW(FTC_SET_DTR);
 }
 
-inline void FTC_ClrDtr(FT_HANDLE ftHandle)
+static inline void FTC_ClrDtr(FT_HANDLE ftHandle)
 {
 	 if(!FT_SUCCESS(ftcStatus = FT_ClrDtr(ftHandle))) 
 		FTC_THROW(FTC_CLR_DTR);
 }
 
-inline void FTC_SetRts(FT_HANDLE ftHandle)
+static inline void FTC_SetRts(FT_HANDLE ftHandle)
 {
 	 if(!FT_SUCCESS(ftcStatus = FT_SetRts(ftHandle))) 
 		FTC_THROW(FTC_SET_RTS);
 }
 
-inline void FTC_ClrRts(FT_HANDLE ftHandle)
+static inline void FTC_ClrRts(FT_HANDLE ftHandle)
 {
 	 if(!FT_SUCCESS(ftcStatus = FT_ClrRts(ftHandle))) 
 		FTC_THROW(FTC_CLR_RTS);
@@ -179,7 +184,7 @@ inline void FTC_SetTimeouts(FT_HANDLE ftHandle, ULONG ReadTimeout, ULONG WriteTi
 }
 */
 
-inline DWORD FTC_GetQueueStatus(FT_HANDLE ftHandle)
+static inline DWORD FTC_GetQueueStatus(FT_HANDLE ftHandle)
 {
 	DWORD dwRxBytes;
 	if(!FT_SUCCESS(ftcStatus = FT_GetQueueStatus(ftHandle, &dwRxBytes))) 
@@ -423,7 +428,7 @@ inline void FTC_GetLatencyTimer(
 }
 
 */
-inline void FTC_SetBitMode(FT_HANDLE ftHandle, UCHAR ucMask, UCHAR ucEnable)
+static inline void FTC_SetBitMode(FT_HANDLE ftHandle, UCHAR ucMask, UCHAR ucEnable)
 {
 	 if(!FT_SUCCESS(ftcStatus = FT_SetBitMode(ftHandle, ucMask, ucEnable))) 
 		FTC_THROW(FTC_SET_BIT_MODE);
@@ -464,17 +469,14 @@ inline void FTC_SetDeadmanTimeout(
 #ifndef _WIN32
 	// Extra functions for non-Windows platforms to compensate
 	// for lack of .INF file to specify Vendor and Product IDs.
+*/
 
-FT_SetVIDPID(
-		DWORD dwVID, 
-		DWORD dwPID
-		)
+static inline void FTC_SetVIDPID(DWORD dwVID, DWORD dwPID)
 {
-	 if(!FT_SUCCESS(ftcStatus = FT_SetDivisor(ftHandle, Divisor))) 
-		FTC_THROW(FTC_SET_DIVISOR);
+	 if(!FT_SUCCESS(ftcStatus = FT_SetVIDPID(dwVID, dwPID))) 
+		FTC_THROW(FTC_SET_VID_PID);
 }
-
-			
+/*
 FT_GetVIDPID(
 		DWORD * pdwVID, 
 		DWORD * pdwPID
@@ -1053,6 +1055,8 @@ const char* FTC_FUNCTION_STR[] = {
 
 	"FTC_SET_BIT_MODE",
 	
+	"FTC_SET_VID_PID",
+
 	"FTC_OTHER"
 	
 };
