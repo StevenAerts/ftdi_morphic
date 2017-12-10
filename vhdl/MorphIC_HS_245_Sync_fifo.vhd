@@ -26,7 +26,6 @@ library ieee;
 use ieee.std_logic_1164.all;
 
 entity morphic_hs_245_sync_fifo is
-   generic ( loopback_to_hsext : integer := 1 );
    port (-- Inputs
 					-- clk50     : in  std_logic;       -- 50MHz clock input unused
       rst       : in  std_logic;       -- Active high reset via BD7
@@ -39,17 +38,7 @@ entity morphic_hs_245_sync_fifo is
       mrdn      : out std_logic;
       mwrn      : out std_logic;
       moen      : out std_logic;
-		msndimm   : out std_logic;           -- unused
-      
--- High speed Synchronous 245 signals
-		hsndimm   : out std_logic;           -- unused
-      hclk60    : in  std_logic;           -- 60MHz clock input
-      hdata     : inout std_logic_vector(7 downto 0);
-      hrxfn     : in std_logic;            -- RX Full #
-      htxen     : in std_logic;            -- TX Full #
-      hoen      : out std_logic;           -- OE# HBDBUS6
-      hrdn      : out std_logic;           -- RD#
-      hwrn      : out std_logic            -- WR#
+		msndimm   : out std_logic
 );
    end morphic_hs_245_sync_fifo;
 
@@ -136,28 +125,28 @@ component seq_trig
 
   signal reset_n : std_logic;
 
-  signal hrxf,htxe,hoe,hrd,hwr : std_logic;
-  signal hdatain  : std_logic_vector(7 downto 0);
-  signal hdataout : std_logic_vector(7 downto 0);
-  signal hdataen  : std_logic;
+--  signal hrxf,htxe,hoe,hrd,hwr : std_logic;
+--  signal hdatain  : std_logic_vector(7 downto 0);
+--  signal hdataout : std_logic_vector(7 downto 0);
+--  signal hdataen  : std_logic;
   
-  signal s2_wr,s2_txe,s2_rd,s2_rxf,s2_hrd : std_logic;
+--  signal s2_wr,s2_txe,s2_rd,s2_rxf,s2_hrd : std_logic;
 
-  signal hclk60_pll,pll2_lock : std_logic;
+--  signal hclk60_pll,pll2_lock : std_logic;
 
-  signal int_hdatain  : std_logic_vector(7 downto 0);
-  signal int_hdataout : std_logic_vector(7 downto 0);
+--  signal int_hdatain  : std_logic_vector(7 downto 0);
+--  signal int_hdataout : std_logic_vector(7 downto 0);
   signal int_mdatain  : std_logic_vector(7 downto 0);
   signal int_mdataout : std_logic_vector(7 downto 0);
 
 
-  signal tie_low: std_logic;
-  signal strobe_mor,strobe_hs : std_logic;
+--  signal tie_low: std_logic;
+--  signal strobe_mor,strobe_hs : std_logic;
   
 
 begin
   
-tie_low <= '0';
+--tie_low <= '0';
 
 --pll1_mor : sync_pll
 --	port map
@@ -193,139 +182,6 @@ end generate GEN_MORPHIC_DATABUS;
 --reset_n <= rst; -- polarity to programme over JTAG
 reset_n <= not rst; -- polarity to programme over USB
 
-GENPASS : if loopback_to_hsext = 0 generate
-
-strobe_hs <= hwr and htxe;
-
-trig1 : seq_trig 
-  port map(
-    clk          => hclk60,
-    reset_n      => reset_n,
-    sync_reset   => tie_low,
-    strobe       => strobe_hs,
-    mon_bus      => hdataout
-
-  );
-
-
-strobe_mor <= mwr and mtxe;
-
-trig2 : seq_trig 
-  port map(
-    clk          => mclk60,
-    reset_n      => reset_n,
-    sync_reset   => tie_low,
-    strobe       => strobe_mor,
-    mon_bus      => mdataout
-
-  );
-
---------------------------------------------------------------------------------
--- Instantiate synchronous fifo from morphic2 to external HS chip
---------------------------------------------------------------------------------
-
-sync1 : sync_fifo 
-   port map(                                 
-      reset_n  => reset_n,
---
-      s_clk    => mclk60,
-      s_wr     => s1_wr,
-      s_txe    => s1_txe,
-      s_dbin   => int_mdatain,
---
---      d_clk    => hclk60_pll,
-      d_clk    => hclk60,
-      d_rd     => s1_rd,
-      d_rxf    => s1_rxf,
-      d_dbout  => int_hdataout
-   );
-
-
-mrxf <= not mrxfn;
-mtxe <= not mtxen;
-
-
-xfer1 : hs245_sif 
-  port map(                                 
-    clk        => mclk60,
-    reset_n    => reset_n,
---
-    ext_txe    => mtxe,
-    ext_rxf    => mrxf,
-    ext_wr     => mwr,
-    ext_rd     => mrd,
-    ext_oe     => moe,
-    ext_datain => mdatain,
-    ext_dataout => mdataout,
---
-    int_datain  => int_mdataout,
-    int_rxf     => s2_rxf,
-    int_rd      => s2_rd,
---
-    int_dataout => int_mdatain,
-    int_txe     => s1_txe,
-    int_wr      => s1_wr
-
-    );
-
-
-
-
- --------------------------------------------------------------------------------
--- Instantiate synchronous fifo from external HS chip to morphic2
---------------------------------------------------------------------------------
-
-sync2 : sync_fifo 
-   port map(                                 
-      reset_n  => reset_n,
---
---      s_clk    => hclk60_pll,
-      s_clk    => hclk60,
-      s_wr     => s2_wr,
-      s_txe    => s2_txe,
-      s_dbin   => int_hdatain,
---
-      d_clk    => mclk60,
-      d_rd     => s2_rd,
-      d_rxf    => s2_rxf,
-      d_dbout  => int_mdataout
-   );
-
-
-hrxf <= not hrxfn;
-htxe <= not htxen;
-
-xfer2 : hs245_sif 
-  port map(                                 
---    clk        => hclk60_pll,
-    clk        => hclk60,
-    reset_n    => reset_n,
---
-    ext_txe    => htxe,
-    ext_rxf    => hrxf,
-    ext_wr     => hwr,
-    ext_rd     => hrd,
-    ext_oe     => hoe,
-    ext_datain => hdatain,
-    ext_dataout => hdataout,
---
-    int_datain  => int_hdataout,
-    int_rxf     => s1_rxf,
-    int_rd      => s1_rd,
---
-    int_dataout => int_hdatain,
-    int_txe     => s2_txe,
-    int_wr      => s2_wr
-
-    );
-
-end generate GENPASS;
-
-GENLOOP : if loopback_to_hsext = 1 generate
-
-
-
-
 sync1 : sync_fifo 
    port map(                                 
       reset_n  => reset_n,
@@ -371,53 +227,49 @@ xfer1 : hs245_sif
     );
 
 
-sync2 : sync_fifo 
-   port map(                                 
-      reset_n  => reset_n,
+--sync2 : sync_fifo 
+--   port map(                                 
+--      reset_n  => reset_n,
+
+--      s_clk    => hclk60,
+--      s_wr     => s2_wr,
+--      s_txe    => s2_txe,
+--      s_dbin   => int_hdatain,
 --
---      s_clk    => hclk60_pll,
-      s_clk    => hclk60,
-      s_wr     => s2_wr,
-      s_txe    => s2_txe,
-      s_dbin   => int_hdatain,
---
-      d_clk    => hclk60,
-      d_rd     => s2_rd,
-      d_rxf    => s2_rxf,
-      d_dbout  => int_hdataout
-   );
+--      d_clk    => hclk60,
+--      d_rd     => s2_rd,
+--      d_rxf    => s2_rxf,
+--      d_dbout  => int_hdataout
+--   );
 
 
 
-hrxf <= not hrxfn;
-htxe <= not htxen;
+--hrxf <= not hrxfn;
+--htxe <= not htxen;
 
-xfer2 : hs245_sif 
-  port map(                                 
---    clk        => hclk60_pll,
-    clk        => hclk60,
-    reset_n    => reset_n,
---
-    ext_txe    => htxe,
-    ext_rxf    => hrxf,
-    ext_wr     => hwr,
-    ext_rd     => hrd,
-    ext_oe     => hoe,
-    ext_datain => hdatain,
-    ext_dataout => hdataout,
---
-    int_datain  => int_hdataout,
-    int_rxf     => s2_rxf,
-    int_rd      => s2_rd,
---
-    int_dataout => int_hdatain,
-    int_txe     => s2_txe,
-    int_wr      => s2_wr
+--xfer2 : hs245_sif 
+--  port map(                                 
 
-    );
+--    clk        => hclk60,
+--    reset_n    => reset_n,
 
-end generate GENLOOP;
+--    ext_txe    => htxe,
+--    ext_rxf    => hrxf,
+--    ext_wr     => hwr,
+--    ext_rd     => hrd,
+--    ext_oe     => hoe,
+--    ext_datain => hdatain,
+--    ext_dataout => hdataout,
 
+--    int_datain  => int_hdataout,
+--    int_rxf     => s2_rxf,
+--    int_rd      => s2_rd,
+
+--    int_dataout => int_hdatain,
+--    int_txe     => s2_txe,
+--    int_wr      => s2_wr
+
+--    );
 
 
 moen <= not moe;
@@ -427,11 +279,11 @@ mwrn <= not mwr;
 msndimm <= '1';
 
 
-hoen <= not hoe;
-hrdn <= not hrd;
-hwrn <= not hwr;
+--hoen <= not hoe;
+--hrdn <= not hrd;
+--hwrn <= not hwr;
 
-hsndimm <= '1';
+--hsndimm <= '1';
 
 --------------------------------------------------------------------------------
 -- Create PLL
@@ -451,28 +303,7 @@ hsndimm <= '1';
 --========================================================
 
 
-hdataen <= not hoe;
+--hdataen <= not hoe;
 
-
-GEN_EXT_DATABUS:
-
-for I in 0 to 7 generate
-
-hdbus_I : process(hdataout,hdataen)
-begin
-if (hdataen='1') then
-   hdata(I) <= hdataout(I);
-else
-   hdata(I) <= 'Z';
-end if;
-end process hdbus_I;
-
-hdatain(i) <= hdata(i);
-
-end generate GEN_EXT_DATABUS;
-
-
-
- 
 end rtl;
 

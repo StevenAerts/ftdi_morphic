@@ -103,13 +103,13 @@ end testbench;
 architecture beh of testbench is
 
 signal rst: std_logic;
-signal mdata,hdata,mdatai,hdatai  : std_logic_vector(7 downto 0);
+signal mdata,mdatai: std_logic_vector(7 downto 0);
+--signal hdata,hdatai  : std_logic_vector(7 downto 0);
 signal mclk60,mrxfn,mtxen,mrdn,mwrn,moen,msndimm : std_logic;
-signal hclk60,hrxfn,htxen,hrdn,hwrn,hoen,hsndimm : std_logic;
+--signal hclk60,hrxfn,htxen,hrdn,hwrn,hoen,hsndimm : std_logic;
 
 
 component morphic_hs_245_sync_fifo 
-   generic ( loopback_to_hsext : integer := 1 );
    port (-- Inputs
 					-- clk50     : in  std_logic;       -- 50MHz clock input unused
       rst       : in  std_logic;       -- Active high reset via BD7
@@ -122,17 +122,8 @@ component morphic_hs_245_sync_fifo
       mrdn      : out std_logic;
       mwrn      : out std_logic;
       moen      : out std_logic;
-		msndimm   : out std_logic;           -- unused
+		msndimm   : out std_logic           -- unused
       
--- High speed Synchronous 245 signals
-		hsndimm   : out std_logic;           -- unused
-      hclk60    : in  std_logic;           -- 60MHz clock input
-      hdata     : inout std_logic_vector(7 downto 0);
-      hrxfn     : in std_logic;            -- RX Full #
-      htxen     : in std_logic;            -- TX Full #
-      hoen      : out std_logic;           -- OE# HBDBUS6
-      hrdn      : out std_logic;           -- RD#
-      hwrn      : out std_logic            -- WR#
 );
 end component;
 
@@ -156,9 +147,6 @@ end component;
 
 begin
 i_fifo : morphic_hs_245_sync_fifo 
-   generic map(
-      loopback_to_hsext=>1
-   )
    port map(                                 
       rst=>rst, 
       mdata=>mdata,
@@ -168,15 +156,7 @@ i_fifo : morphic_hs_245_sync_fifo
       mrdn=>mrdn,
       mwrn=>mwrn,
       moen=>moen,
-      msndimm=>msndimm,
-      hsndimm=>hsndimm,
-      hclk60=>hclk60,
-      hdata=>hdata,
-      hrxfn=>hrxfn,
-      htxen=>htxen,
-      hoen=>hoen,
-      hrdn=>hrdn,
-      hwrn=>hwrn
+      msndimm=>msndimm
     );
 
 i_mfifo_stim: fifo_stim
@@ -195,21 +175,6 @@ i_mfifo_stim: fifo_stim
       oen=>moen
     );
 
---i_hfifo_stim: fifo_stim
---    generic map (
---        clockperiod => 18 ns,
---        id => "hfifo"
---    )
---    port map (
---      rst=>rst,
---      data=>hdata,
---      clk=>hclk60,
---      rxfn=>hrxfn,
---      txen=>htxen,
---      rdn=>hrdn,
---      wrn=>hwrn,
---      oen=>hoen
---    );
     
 rst_proc: process
 begin
