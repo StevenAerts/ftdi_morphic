@@ -109,7 +109,7 @@ signal mclk60,mrxfn,mtxen,mrdn,mwrn,moen,msndimm : std_logic;
 --signal hclk60,hrxfn,htxen,hrdn,hwrn,hoen,hsndimm : std_logic;
 
 
-component morphic_hs_245_sync_fifo 
+component ftdi_morphic 
    port (-- Inputs
 					-- clk50     : in  std_logic;       -- 50MHz clock input unused
       rst       : in  std_logic;       -- Active high reset via BD7
@@ -146,7 +146,7 @@ end component;
 
 
 begin
-i_fifo : morphic_hs_245_sync_fifo 
+i_fifo : ftdi_morphic 
    port map(                                 
       rst=>rst, 
       mdata=>mdata,
