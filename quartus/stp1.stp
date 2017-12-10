@@ -1,0 +1,807 @@
+<session jtag_chain="USB-Blaster [USB-3]" jtag_device="@1: EP2C5 (0x020B10DD)" sof_file="" top_level_entity="MorphIC_HS_245_Sync_fifo">
+  <display_tree gui_logging_enabled="0">
+    <display_branch instance="auto_signaltap_0" log="USE_GLOBAL_TEMP" signal_set="USE_GLOBAL_TEMP" trigger="USE_GLOBAL_TEMP"/>
+  </display_tree>
+  <instance entity_name="sld_signaltap" is_auto_node="yes" is_expanded="true" name="auto_signaltap_0" source_file="sld_signaltap.vhd">
+    <node_ip_info instance_id="0" mfg_id="110" node_id="0" version="6"/>
+    <signal_set global_temp="1" is_expanded="true" name="signal_set: 2010/07/02 12:02:22  #0">
+      <clock name="mclk60" polarity="posedge" tap_mode="classic"/>
+      <config ram_type="M4K" reserved_data_nodes="0" reserved_storage_qualifier_nodes="0" reserved_trigger_nodes="0" sample_depth="512" trigger_in_enable="no" trigger_in_node="hrxfn" trigger_in_tap_mode="classic" trigger_out_enable="no"/>
+      <top_entity/>
+      <signal_vec>
+        <trigger_input_vec>
+          <wire name="hdata[0]" tap_mode="classic" type="bidir pin"/>
+          <wire name="hdata[1]" tap_mode="classic" type="bidir pin"/>
+          <wire name="hdata[2]" tap_mode="classic" type="bidir pin"/>
+          <wire name="hdata[3]" tap_mode="classic" type="bidir pin"/>
+          <wire name="hdata[4]" tap_mode="classic" type="bidir pin"/>
+          <wire name="hdata[5]" tap_mode="classic" type="bidir pin"/>
+          <wire name="hdata[6]" tap_mode="classic" type="bidir pin"/>
+          <wire name="hdata[7]" tap_mode="classic" type="bidir pin"/>
+          <wire name="hoen" tap_mode="classic" type="output pin"/>
+          <wire name="hpwrenn" tap_mode="classic" type="input pin"/>
+          <wire name="hrdn" tap_mode="classic" type="output pin"/>
+          <wire name="hrxfn" tap_mode="classic" type="input pin"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|can_read_ext" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|can_write_ext" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|cnt_limit" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|en_ext_to_int" tap_mode="classic" type="register"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|en_int_to_ext" tap_mode="classic" type="register"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|enbyte_cnt" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_datain[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_datain[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_datain[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_datain[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_datain[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_datain[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_datain[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_datain[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_dataout[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_dataout[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_dataout[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_dataout[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_dataout[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_dataout[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_dataout[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_dataout[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_oe" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_rd" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_rxf" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_txe" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_wr" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|fsstate.fsidle" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|fsstate.fsread" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|fsstate.fswrite" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|hold_wr" tap_mode="classic" type="register"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_datain[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_datain[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_datain[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_datain[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_datain[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_datain[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_datain[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_datain[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_dataout[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_dataout[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_dataout[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_dataout[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_dataout[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_dataout[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_dataout[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_dataout[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_oe" tap_mode="classic" type="register"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_rd" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_rxf" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_txe" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_wr" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|last_was_read" tap_mode="classic" type="register"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|rst_cnt" tap_mode="classic" type="register"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|sel_hold" tap_mode="classic" type="register"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|tx_hold_reg[0]" tap_mode="classic" type="register"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|tx_hold_reg[1]" tap_mode="classic" type="register"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|tx_hold_reg[2]" tap_mode="classic" type="register"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|tx_hold_reg[3]" tap_mode="classic" type="register"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|tx_hold_reg[4]" tap_mode="classic" type="register"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|tx_hold_reg[5]" tap_mode="classic" type="register"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|tx_hold_reg[6]" tap_mode="classic" type="register"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|tx_hold_reg[7]" tap_mode="classic" type="register"/>
+          <wire name="hs245_sif:\GENPASS:xfer2|int_rd" tap_mode="classic" type="combinatorial"/>
+          <wire name="hsleep" tap_mode="classic" type="input pin"/>
+          <wire name="hsndimm" tap_mode="classic" type="output pin"/>
+          <wire name="htxen" tap_mode="classic" type="input pin"/>
+          <wire name="hwrn" tap_mode="classic" type="output pin"/>
+          <wire name="mdata[0]" tap_mode="classic" type="bidir pin"/>
+          <wire name="mdata[1]" tap_mode="classic" type="bidir pin"/>
+          <wire name="mdata[2]" tap_mode="classic" type="bidir pin"/>
+          <wire name="mdata[3]" tap_mode="classic" type="bidir pin"/>
+          <wire name="mdata[4]" tap_mode="classic" type="bidir pin"/>
+          <wire name="mdata[5]" tap_mode="classic" type="bidir pin"/>
+          <wire name="mdata[6]" tap_mode="classic" type="bidir pin"/>
+          <wire name="mdata[7]" tap_mode="classic" type="bidir pin"/>
+          <wire name="moen" tap_mode="classic" type="output pin"/>
+          <wire name="mrdn" tap_mode="classic" type="output pin"/>
+          <wire name="mrxfn" tap_mode="classic" type="input pin"/>
+          <wire name="mtxen" tap_mode="classic" type="input pin"/>
+          <wire name="mwrn" tap_mode="classic" type="output pin"/>
+          <wire name="sync_fifo:\GENPASS:sync2|d_dbout[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|d_dbout[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|d_dbout[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|d_dbout[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|d_dbout[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|d_dbout[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|d_dbout[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|d_dbout[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|d_incadd" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|d_notempty" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|d_rd" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|d_rd_del" tap_mode="classic" type="register"/>
+          <wire name="sync_fifo:\GENPASS:sync2|d_rxf" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|data_hold_reg[0]" tap_mode="classic" type="register"/>
+          <wire name="sync_fifo:\GENPASS:sync2|data_hold_reg[1]" tap_mode="classic" type="register"/>
+          <wire name="sync_fifo:\GENPASS:sync2|data_hold_reg[2]" tap_mode="classic" type="register"/>
+          <wire name="sync_fifo:\GENPASS:sync2|data_hold_reg[3]" tap_mode="classic" type="register"/>
+          <wire name="sync_fifo:\GENPASS:sync2|data_hold_reg[4]" tap_mode="classic" type="register"/>
+          <wire name="sync_fifo:\GENPASS:sync2|data_hold_reg[5]" tap_mode="classic" type="register"/>
+          <wire name="sync_fifo:\GENPASS:sync2|data_hold_reg[6]" tap_mode="classic" type="register"/>
+          <wire name="sync_fifo:\GENPASS:sync2|data_hold_reg[7]" tap_mode="classic" type="register"/>
+          <wire name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|enable" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|load" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[8]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[9]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|fstate.FSFULLA1" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|fstate.FSFULLA2" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|fstate.FSIDLE" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|pipe_full" tap_mode="classic" type="register"/>
+          <wire name="sync_fifo:\GENPASS:sync2|pipe_has_data" tap_mode="classic" type="register"/>
+          <wire name="sync_fifo:\GENPASS:sync2|ram_a_writemode" tap_mode="classic" type="register"/>
+          <wire name="sync_fifo:\GENPASS:sync2|ram_d_fullup" tap_mode="classic" type="register"/>
+          <wire name="sync_fifo:\GENPASS:sync2|ram_s_fullup" tap_mode="classic" type="register"/>
+          <wire name="trig_to_hs" tap_mode="classic" type="output pin"/>
+          <wire name="trig_to_mor" tap_mode="classic" type="output pin"/>
+        </trigger_input_vec>
+        <data_input_vec>
+          <wire name="hdata[0]" tap_mode="classic" type="bidir pin"/>
+          <wire name="hdata[1]" tap_mode="classic" type="bidir pin"/>
+          <wire name="hdata[2]" tap_mode="classic" type="bidir pin"/>
+          <wire name="hdata[3]" tap_mode="classic" type="bidir pin"/>
+          <wire name="hdata[4]" tap_mode="classic" type="bidir pin"/>
+          <wire name="hdata[5]" tap_mode="classic" type="bidir pin"/>
+          <wire name="hdata[6]" tap_mode="classic" type="bidir pin"/>
+          <wire name="hdata[7]" tap_mode="classic" type="bidir pin"/>
+          <wire name="hoen" tap_mode="classic" type="output pin"/>
+          <wire name="hpwrenn" tap_mode="classic" type="input pin"/>
+          <wire name="hrdn" tap_mode="classic" type="output pin"/>
+          <wire name="hrxfn" tap_mode="classic" type="input pin"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|can_read_ext" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|can_write_ext" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|cnt_limit" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|en_ext_to_int" tap_mode="classic" type="register"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|en_int_to_ext" tap_mode="classic" type="register"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|enbyte_cnt" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_datain[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_datain[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_datain[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_datain[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_datain[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_datain[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_datain[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_datain[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_dataout[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_dataout[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_dataout[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_dataout[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_dataout[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_dataout[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_dataout[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_dataout[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_oe" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_rd" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_rxf" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_txe" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_wr" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|fsstate.fsidle" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|fsstate.fsread" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|fsstate.fswrite" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|hold_wr" tap_mode="classic" type="register"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_datain[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_datain[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_datain[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_datain[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_datain[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_datain[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_datain[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_datain[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_dataout[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_dataout[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_dataout[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_dataout[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_dataout[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_dataout[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_dataout[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_dataout[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_oe" tap_mode="classic" type="register"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_rd" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_rxf" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_txe" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_wr" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|last_was_read" tap_mode="classic" type="register"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|rst_cnt" tap_mode="classic" type="register"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|sel_hold" tap_mode="classic" type="register"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|tx_hold_reg[0]" tap_mode="classic" type="register"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|tx_hold_reg[1]" tap_mode="classic" type="register"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|tx_hold_reg[2]" tap_mode="classic" type="register"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|tx_hold_reg[3]" tap_mode="classic" type="register"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|tx_hold_reg[4]" tap_mode="classic" type="register"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|tx_hold_reg[5]" tap_mode="classic" type="register"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|tx_hold_reg[6]" tap_mode="classic" type="register"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|tx_hold_reg[7]" tap_mode="classic" type="register"/>
+          <wire name="hs245_sif:\GENPASS:xfer2|int_rd" tap_mode="classic" type="combinatorial"/>
+          <wire name="hsleep" tap_mode="classic" type="input pin"/>
+          <wire name="hsndimm" tap_mode="classic" type="output pin"/>
+          <wire name="htxen" tap_mode="classic" type="input pin"/>
+          <wire name="hwrn" tap_mode="classic" type="output pin"/>
+          <wire name="mdata[0]" tap_mode="classic" type="bidir pin"/>
+          <wire name="mdata[1]" tap_mode="classic" type="bidir pin"/>
+          <wire name="mdata[2]" tap_mode="classic" type="bidir pin"/>
+          <wire name="mdata[3]" tap_mode="classic" type="bidir pin"/>
+          <wire name="mdata[4]" tap_mode="classic" type="bidir pin"/>
+          <wire name="mdata[5]" tap_mode="classic" type="bidir pin"/>
+          <wire name="mdata[6]" tap_mode="classic" type="bidir pin"/>
+          <wire name="mdata[7]" tap_mode="classic" type="bidir pin"/>
+          <wire name="moen" tap_mode="classic" type="output pin"/>
+          <wire name="mrdn" tap_mode="classic" type="output pin"/>
+          <wire name="mrxfn" tap_mode="classic" type="input pin"/>
+          <wire name="mtxen" tap_mode="classic" type="input pin"/>
+          <wire name="mwrn" tap_mode="classic" type="output pin"/>
+          <wire name="sync_fifo:\GENPASS:sync2|d_dbout[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|d_dbout[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|d_dbout[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|d_dbout[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|d_dbout[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|d_dbout[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|d_dbout[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|d_dbout[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|d_incadd" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|d_notempty" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|d_rd" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|d_rd_del" tap_mode="classic" type="register"/>
+          <wire name="sync_fifo:\GENPASS:sync2|d_rxf" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|data_hold_reg[0]" tap_mode="classic" type="register"/>
+          <wire name="sync_fifo:\GENPASS:sync2|data_hold_reg[1]" tap_mode="classic" type="register"/>
+          <wire name="sync_fifo:\GENPASS:sync2|data_hold_reg[2]" tap_mode="classic" type="register"/>
+          <wire name="sync_fifo:\GENPASS:sync2|data_hold_reg[3]" tap_mode="classic" type="register"/>
+          <wire name="sync_fifo:\GENPASS:sync2|data_hold_reg[4]" tap_mode="classic" type="register"/>
+          <wire name="sync_fifo:\GENPASS:sync2|data_hold_reg[5]" tap_mode="classic" type="register"/>
+          <wire name="sync_fifo:\GENPASS:sync2|data_hold_reg[6]" tap_mode="classic" type="register"/>
+          <wire name="sync_fifo:\GENPASS:sync2|data_hold_reg[7]" tap_mode="classic" type="register"/>
+          <wire name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|enable" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|load" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[8]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[9]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|fstate.FSFULLA1" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|fstate.FSFULLA2" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|fstate.FSIDLE" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|pipe_full" tap_mode="classic" type="register"/>
+          <wire name="sync_fifo:\GENPASS:sync2|pipe_has_data" tap_mode="classic" type="register"/>
+          <wire name="sync_fifo:\GENPASS:sync2|ram_a_writemode" tap_mode="classic" type="register"/>
+          <wire name="sync_fifo:\GENPASS:sync2|ram_d_fullup" tap_mode="classic" type="register"/>
+          <wire name="sync_fifo:\GENPASS:sync2|ram_s_fullup" tap_mode="classic" type="register"/>
+          <wire name="trig_to_hs" tap_mode="classic" type="output pin"/>
+          <wire name="trig_to_mor" tap_mode="classic" type="output pin"/>
+        </data_input_vec>
+        <storage_qualifier_input_vec>
+          <wire name="hdata[0]" tap_mode="classic" type="bidir pin"/>
+          <wire name="hdata[1]" tap_mode="classic" type="bidir pin"/>
+          <wire name="hdata[2]" tap_mode="classic" type="bidir pin"/>
+          <wire name="hdata[3]" tap_mode="classic" type="bidir pin"/>
+          <wire name="hdata[4]" tap_mode="classic" type="bidir pin"/>
+          <wire name="hdata[5]" tap_mode="classic" type="bidir pin"/>
+          <wire name="hdata[6]" tap_mode="classic" type="bidir pin"/>
+          <wire name="hdata[7]" tap_mode="classic" type="bidir pin"/>
+          <wire name="hoen" tap_mode="classic" type="output pin"/>
+          <wire name="hpwrenn" tap_mode="classic" type="input pin"/>
+          <wire name="hrdn" tap_mode="classic" type="output pin"/>
+          <wire name="hrxfn" tap_mode="classic" type="input pin"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|can_read_ext" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|can_write_ext" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|cnt_limit" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|en_ext_to_int" tap_mode="classic" type="register"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|en_int_to_ext" tap_mode="classic" type="register"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|enbyte_cnt" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_datain[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_datain[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_datain[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_datain[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_datain[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_datain[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_datain[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_datain[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_dataout[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_dataout[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_dataout[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_dataout[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_dataout[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_dataout[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_dataout[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_dataout[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_oe" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_rd" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_rxf" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_txe" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|ext_wr" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|fsstate.fsidle" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|fsstate.fsread" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|fsstate.fswrite" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|hold_wr" tap_mode="classic" type="register"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_datain[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_datain[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_datain[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_datain[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_datain[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_datain[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_datain[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_datain[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_dataout[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_dataout[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_dataout[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_dataout[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_dataout[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_dataout[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_dataout[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_dataout[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_oe" tap_mode="classic" type="register"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_rd" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_rxf" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_txe" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|int_wr" tap_mode="classic" type="combinatorial"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|last_was_read" tap_mode="classic" type="register"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|rst_cnt" tap_mode="classic" type="register"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|sel_hold" tap_mode="classic" type="register"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|tx_hold_reg[0]" tap_mode="classic" type="register"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|tx_hold_reg[1]" tap_mode="classic" type="register"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|tx_hold_reg[2]" tap_mode="classic" type="register"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|tx_hold_reg[3]" tap_mode="classic" type="register"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|tx_hold_reg[4]" tap_mode="classic" type="register"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|tx_hold_reg[5]" tap_mode="classic" type="register"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|tx_hold_reg[6]" tap_mode="classic" type="register"/>
+          <wire name="hs245_sif:\GENPASS:xfer1|tx_hold_reg[7]" tap_mode="classic" type="register"/>
+          <wire name="hs245_sif:\GENPASS:xfer2|int_rd" tap_mode="classic" type="combinatorial"/>
+          <wire name="hsleep" tap_mode="classic" type="input pin"/>
+          <wire name="hsndimm" tap_mode="classic" type="output pin"/>
+          <wire name="htxen" tap_mode="classic" type="input pin"/>
+          <wire name="hwrn" tap_mode="classic" type="output pin"/>
+          <wire name="mdata[0]" tap_mode="classic" type="bidir pin"/>
+          <wire name="mdata[1]" tap_mode="classic" type="bidir pin"/>
+          <wire name="mdata[2]" tap_mode="classic" type="bidir pin"/>
+          <wire name="mdata[3]" tap_mode="classic" type="bidir pin"/>
+          <wire name="mdata[4]" tap_mode="classic" type="bidir pin"/>
+          <wire name="mdata[5]" tap_mode="classic" type="bidir pin"/>
+          <wire name="mdata[6]" tap_mode="classic" type="bidir pin"/>
+          <wire name="mdata[7]" tap_mode="classic" type="bidir pin"/>
+          <wire name="moen" tap_mode="classic" type="output pin"/>
+          <wire name="mrdn" tap_mode="classic" type="output pin"/>
+          <wire name="mrxfn" tap_mode="classic" type="input pin"/>
+          <wire name="mtxen" tap_mode="classic" type="input pin"/>
+          <wire name="mwrn" tap_mode="classic" type="output pin"/>
+          <wire name="sync_fifo:\GENPASS:sync2|d_dbout[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|d_dbout[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|d_dbout[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|d_dbout[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|d_dbout[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|d_dbout[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|d_dbout[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|d_dbout[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|d_incadd" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|d_notempty" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|d_rd" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|d_rd_del" tap_mode="classic" type="register"/>
+          <wire name="sync_fifo:\GENPASS:sync2|d_rxf" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|data_hold_reg[0]" tap_mode="classic" type="register"/>
+          <wire name="sync_fifo:\GENPASS:sync2|data_hold_reg[1]" tap_mode="classic" type="register"/>
+          <wire name="sync_fifo:\GENPASS:sync2|data_hold_reg[2]" tap_mode="classic" type="register"/>
+          <wire name="sync_fifo:\GENPASS:sync2|data_hold_reg[3]" tap_mode="classic" type="register"/>
+          <wire name="sync_fifo:\GENPASS:sync2|data_hold_reg[4]" tap_mode="classic" type="register"/>
+          <wire name="sync_fifo:\GENPASS:sync2|data_hold_reg[5]" tap_mode="classic" type="register"/>
+          <wire name="sync_fifo:\GENPASS:sync2|data_hold_reg[6]" tap_mode="classic" type="register"/>
+          <wire name="sync_fifo:\GENPASS:sync2|data_hold_reg[7]" tap_mode="classic" type="register"/>
+          <wire name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|enable" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|load" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[8]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[9]" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|fstate.FSFULLA1" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|fstate.FSFULLA2" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|fstate.FSIDLE" tap_mode="classic" type="combinatorial"/>
+          <wire name="sync_fifo:\GENPASS:sync2|pipe_full" tap_mode="classic" type="register"/>
+          <wire name="sync_fifo:\GENPASS:sync2|pipe_has_data" tap_mode="classic" type="register"/>
+          <wire name="sync_fifo:\GENPASS:sync2|ram_a_writemode" tap_mode="classic" type="register"/>
+          <wire name="sync_fifo:\GENPASS:sync2|ram_d_fullup" tap_mode="classic" type="register"/>
+          <wire name="sync_fifo:\GENPASS:sync2|ram_s_fullup" tap_mode="classic" type="register"/>
+          <wire name="trig_to_hs" tap_mode="classic" type="output pin"/>
+          <wire name="trig_to_mor" tap_mode="classic" type="output pin"/>
+        </storage_qualifier_input_vec>
+      </signal_vec>
+      <presentation>
+        <data_view>
+          <bus is_signal_inverted="no" link="all" name="hdata" order="lsb_to_msb" radix="hex" state="collapse" type="bidir pin">
+            <net is_signal_inverted="no" name="hdata[0]"/>
+            <net is_signal_inverted="no" name="hdata[1]"/>
+            <net is_signal_inverted="no" name="hdata[2]"/>
+            <net is_signal_inverted="no" name="hdata[3]"/>
+            <net is_signal_inverted="no" name="hdata[4]"/>
+            <net is_signal_inverted="no" name="hdata[5]"/>
+            <net is_signal_inverted="no" name="hdata[6]"/>
+            <net is_signal_inverted="no" name="hdata[7]"/>
+          </bus>
+          <net is_signal_inverted="no" name="hoen"/>
+          <net is_signal_inverted="no" name="hpwrenn"/>
+          <net is_signal_inverted="no" name="hrdn"/>
+          <net is_signal_inverted="no" name="hrxfn"/>
+          <net is_signal_inverted="no" name="hsleep"/>
+          <net is_signal_inverted="no" name="hsndimm"/>
+          <net is_signal_inverted="no" name="htxen"/>
+          <net is_signal_inverted="no" name="hwrn"/>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer2|int_rd"/>
+          <bus is_signal_inverted="no" link="all" name="mdata" order="lsb_to_msb" radix="hex" state="collapse" type="bidir pin">
+            <net is_signal_inverted="no" name="mdata[0]"/>
+            <net is_signal_inverted="no" name="mdata[1]"/>
+            <net is_signal_inverted="no" name="mdata[2]"/>
+            <net is_signal_inverted="no" name="mdata[3]"/>
+            <net is_signal_inverted="no" name="mdata[4]"/>
+            <net is_signal_inverted="no" name="mdata[5]"/>
+            <net is_signal_inverted="no" name="mdata[6]"/>
+            <net is_signal_inverted="no" name="mdata[7]"/>
+          </bus>
+          <net is_signal_inverted="no" name="moen"/>
+          <net is_signal_inverted="no" name="mrdn"/>
+          <net is_signal_inverted="no" name="mrxfn"/>
+          <net is_signal_inverted="no" name="mtxen"/>
+          <net is_signal_inverted="no" name="mwrn"/>
+          <net is_signal_inverted="no" name="trig_to_hs"/>
+          <net is_signal_inverted="no" name="trig_to_mor"/>
+          <bus is_signal_inverted="no" link="all" name="hs245_sif:\GENPASS:xfer1|tx_hold_reg" order="lsb_to_msb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|tx_hold_reg[0]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|tx_hold_reg[1]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|tx_hold_reg[2]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|tx_hold_reg[3]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|tx_hold_reg[4]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|tx_hold_reg[5]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|tx_hold_reg[6]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|tx_hold_reg[7]"/>
+          </bus>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|sel_hold"/>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|rst_cnt"/>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|last_was_read"/>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|int_oe"/>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|int_rxf"/>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|int_txe"/>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|int_wr"/>
+          <bus is_signal_inverted="no" link="all" name="hs245_sif:\GENPASS:xfer1|int_dataout" order="lsb_to_msb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|int_dataout[0]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|int_dataout[1]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|int_dataout[2]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|int_dataout[3]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|int_dataout[4]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|int_dataout[5]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|int_dataout[6]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|int_dataout[7]"/>
+          </bus>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|ext_oe"/>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|ext_rd"/>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|ext_rxf"/>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|ext_txe"/>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|ext_wr"/>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|fsstate.fsidle"/>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|fsstate.fsread"/>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|fsstate.fswrite"/>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|hold_wr"/>
+          <bus is_signal_inverted="no" link="all" name="hs245_sif:\GENPASS:xfer1|int_datain" order="lsb_to_msb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|int_datain[0]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|int_datain[1]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|int_datain[2]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|int_datain[3]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|int_datain[4]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|int_datain[5]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|int_datain[6]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|int_datain[7]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="hs245_sif:\GENPASS:xfer1|ext_dataout" order="lsb_to_msb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|ext_dataout[0]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|ext_dataout[1]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|ext_dataout[2]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|ext_dataout[3]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|ext_dataout[4]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|ext_dataout[5]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|ext_dataout[6]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|ext_dataout[7]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="hs245_sif:\GENPASS:xfer1|ext_datain" order="lsb_to_msb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|ext_datain[0]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|ext_datain[1]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|ext_datain[2]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|ext_datain[3]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|ext_datain[4]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|ext_datain[5]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|ext_datain[6]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|ext_datain[7]"/>
+          </bus>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|can_read_ext"/>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|can_write_ext"/>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|cnt_limit"/>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|en_ext_to_int"/>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|en_int_to_ext"/>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|enbyte_cnt"/>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|int_rd"/>
+          <bus is_signal_inverted="no" link="all" name="sync_fifo:\GENPASS:sync2|d_dbout" order="lsb_to_msb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|d_dbout[0]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|d_dbout[1]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|d_dbout[2]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|d_dbout[3]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|d_dbout[4]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|d_dbout[5]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|d_dbout[6]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|d_dbout[7]"/>
+          </bus>
+          <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|d_incadd"/>
+          <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|d_rd"/>
+          <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|d_rd_del"/>
+          <bus is_signal_inverted="no" link="all" name="sync_fifo:\GENPASS:sync2|data_hold_reg" order="lsb_to_msb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|data_hold_reg[0]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|data_hold_reg[1]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|data_hold_reg[2]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|data_hold_reg[3]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|data_hold_reg[4]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|data_hold_reg[5]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|data_hold_reg[6]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|data_hold_reg[7]"/>
+          </bus>
+          <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|d_rxf"/>
+          <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|fstate.FSFULLA1"/>
+          <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|fstate.FSFULLA2"/>
+          <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|fstate.FSIDLE"/>
+          <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|ram_a_writemode"/>
+          <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|ram_d_fullup"/>
+          <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|ram_s_fullup"/>
+          <bus is_signal_inverted="no" link="all" name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q" order="lsb_to_msb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[0]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[1]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[2]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[3]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[4]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[5]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[6]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[7]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[8]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[9]"/>
+          </bus>
+          <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|load"/>
+          <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|enable"/>
+          <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|d_notempty"/>
+          <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|pipe_full"/>
+          <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|pipe_has_data"/>
+        </data_view>
+        <setup_view>
+          <bus is_signal_inverted="no" link="all" name="hdata" order="lsb_to_msb" radix="hex" state="collapse" type="bidir pin">
+            <net is_signal_inverted="no" name="hdata[0]"/>
+            <net is_signal_inverted="no" name="hdata[1]"/>
+            <net is_signal_inverted="no" name="hdata[2]"/>
+            <net is_signal_inverted="no" name="hdata[3]"/>
+            <net is_signal_inverted="no" name="hdata[4]"/>
+            <net is_signal_inverted="no" name="hdata[5]"/>
+            <net is_signal_inverted="no" name="hdata[6]"/>
+            <net is_signal_inverted="no" name="hdata[7]"/>
+          </bus>
+          <net is_signal_inverted="no" name="hoen"/>
+          <net is_signal_inverted="no" name="hpwrenn"/>
+          <net is_signal_inverted="no" name="hrdn"/>
+          <net is_signal_inverted="no" name="hrxfn"/>
+          <net is_signal_inverted="no" name="hsleep"/>
+          <net is_signal_inverted="no" name="hsndimm"/>
+          <net is_signal_inverted="no" name="htxen"/>
+          <net is_signal_inverted="no" name="hwrn"/>
+          <bus is_signal_inverted="no" link="all" name="mdata" order="lsb_to_msb" radix="hex" state="collapse" type="bidir pin">
+            <net is_signal_inverted="no" name="mdata[0]"/>
+            <net is_signal_inverted="no" name="mdata[1]"/>
+            <net is_signal_inverted="no" name="mdata[2]"/>
+            <net is_signal_inverted="no" name="mdata[3]"/>
+            <net is_signal_inverted="no" name="mdata[4]"/>
+            <net is_signal_inverted="no" name="mdata[5]"/>
+            <net is_signal_inverted="no" name="mdata[6]"/>
+            <net is_signal_inverted="no" name="mdata[7]"/>
+          </bus>
+          <net is_signal_inverted="no" name="moen"/>
+          <net is_signal_inverted="no" name="mrdn"/>
+          <net is_signal_inverted="no" name="mrxfn"/>
+          <net is_signal_inverted="no" name="mtxen"/>
+          <net is_signal_inverted="no" name="mwrn"/>
+          <net is_signal_inverted="no" name="trig_to_hs"/>
+          <net is_signal_inverted="no" name="trig_to_mor"/>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer2|int_rd"/>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|int_rd"/>
+          <bus is_signal_inverted="no" link="all" name="hs245_sif:\GENPASS:xfer1|tx_hold_reg" order="lsb_to_msb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|tx_hold_reg[0]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|tx_hold_reg[1]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|tx_hold_reg[2]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|tx_hold_reg[3]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|tx_hold_reg[4]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|tx_hold_reg[5]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|tx_hold_reg[6]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|tx_hold_reg[7]"/>
+          </bus>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|sel_hold"/>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|rst_cnt"/>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|last_was_read"/>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|int_oe"/>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|int_rxf"/>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|int_txe"/>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|int_wr"/>
+          <bus is_signal_inverted="no" link="all" name="hs245_sif:\GENPASS:xfer1|int_dataout" order="lsb_to_msb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|int_dataout[0]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|int_dataout[1]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|int_dataout[2]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|int_dataout[3]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|int_dataout[4]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|int_dataout[5]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|int_dataout[6]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|int_dataout[7]"/>
+          </bus>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|ext_oe"/>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|ext_rd"/>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|ext_rxf"/>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|ext_txe"/>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|ext_wr"/>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|fsstate.fsidle"/>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|fsstate.fsread"/>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|fsstate.fswrite"/>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|hold_wr"/>
+          <bus is_signal_inverted="no" link="all" name="hs245_sif:\GENPASS:xfer1|int_datain" order="lsb_to_msb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|int_datain[0]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|int_datain[1]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|int_datain[2]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|int_datain[3]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|int_datain[4]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|int_datain[5]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|int_datain[6]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|int_datain[7]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="hs245_sif:\GENPASS:xfer1|ext_dataout" order="lsb_to_msb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|ext_dataout[0]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|ext_dataout[1]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|ext_dataout[2]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|ext_dataout[3]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|ext_dataout[4]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|ext_dataout[5]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|ext_dataout[6]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|ext_dataout[7]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="hs245_sif:\GENPASS:xfer1|ext_datain" order="lsb_to_msb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|ext_datain[0]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|ext_datain[1]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|ext_datain[2]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|ext_datain[3]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|ext_datain[4]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|ext_datain[5]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|ext_datain[6]"/>
+            <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|ext_datain[7]"/>
+          </bus>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|can_read_ext"/>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|can_write_ext"/>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|cnt_limit"/>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|en_ext_to_int"/>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|en_int_to_ext"/>
+          <net is_signal_inverted="no" name="hs245_sif:\GENPASS:xfer1|enbyte_cnt"/>
+          <bus is_signal_inverted="no" link="all" name="sync_fifo:\GENPASS:sync2|d_dbout" order="lsb_to_msb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|d_dbout[0]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|d_dbout[1]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|d_dbout[2]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|d_dbout[3]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|d_dbout[4]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|d_dbout[5]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|d_dbout[6]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|d_dbout[7]"/>
+          </bus>
+          <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|d_incadd"/>
+          <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|d_rd"/>
+          <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|d_rd_del"/>
+          <bus is_signal_inverted="no" link="all" name="sync_fifo:\GENPASS:sync2|data_hold_reg" order="lsb_to_msb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|data_hold_reg[0]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|data_hold_reg[1]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|data_hold_reg[2]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|data_hold_reg[3]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|data_hold_reg[4]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|data_hold_reg[5]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|data_hold_reg[6]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|data_hold_reg[7]"/>
+          </bus>
+          <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|d_rxf"/>
+          <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|fstate.FSFULLA1"/>
+          <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|fstate.FSFULLA2"/>
+          <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|fstate.FSIDLE"/>
+          <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|ram_a_writemode"/>
+          <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|ram_d_fullup"/>
+          <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|ram_s_fullup"/>
+          <bus is_signal_inverted="no" link="all" name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q" order="lsb_to_msb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[0]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[1]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[2]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[3]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[4]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[5]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[6]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[7]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[8]"/>
+            <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|q[9]"/>
+          </bus>
+          <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|load"/>
+          <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|dncntlg:ram_a_d_fullcnt|enable"/>
+          <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|d_notempty"/>
+          <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|pipe_full"/>
+          <net is_signal_inverted="no" name="sync_fifo:\GENPASS:sync2|pipe_has_data"/>
+        </setup_view>
+      </presentation>
+      <trigger CRC="4F890AFD" attribute_mem_mode="false" gap_record="true" global_temp="1" is_expanded="true" name="trigger: 2010/07/02 13:22:38  #0" position="center" power_up_trigger_mode="false" record_data_gap="true" segment_size="1" storage_mode="off" storage_qualifier_disabled="no" storage_qualifier_port_is_pin="true" storage_qualifier_port_name="auto_stp_external_storage_qualifier" storage_qualifier_port_tap_mode="classic" trigger_in="falling edge" trigger_out="active high" trigger_type="circular">
+        <power_up_trigger position="pre" storage_qualifier_disabled="no" trigger_in="dont_care" trigger_out="active high"/>
+        <events use_custom_flow_control="no">
+          <level enabled="yes" name="condition1" type="basic">'trig_to_hs' == rising edge
+            
+            
+            <power_up enabled="yes">
+            </power_up>
+            <op_node/>
+          </level>
+        </events>
+        <storage_qualifier_events>
+          <transitional>0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+            
+            
+            <pwr_up_transitional>0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+            
+            
+            </pwr_up_transitional>
+          </transitional>
+          <storage_qualifier_level type="basic">
+            <power_up>
+            </power_up>
+            <op_node/>
+          </storage_qualifier_level>
+          <storage_qualifier_level type="basic">
+            <power_up>
+            </power_up>
+            <op_node/>
+          </storage_qualifier_level>
+          <storage_qualifier_level type="basic">
+            <power_up>
+            </power_up>
+            <op_node/>
+          </storage_qualifier_level>
+        </storage_qualifier_events>
+        <log>
+          <data global_temp="1" name="log: 2010/07/06 13:04:04  #0" power_up_mode="false" sample_depth="512" trigger_position="256">01100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011000000000000000000000000010100000000000000000000001001000000000011010000000011101000000000000000000000010000000000001001000101100000101100000000000000000000000001010000000000000000000000100100000000001101000000001110100000000000000000000001000000000000100100010110000010110000000000000000000000000101000000000000000000000010010000000000110100000000111010000000000000000000000100000000000010010001011000001011100000000000000000000000110100000000000000000000001001000000000011010000000011001000000000000000000000010000000000001001000101100000101110000000000000000000001011001000000000000000000100100100000000001101000000000100100000000000000000000001000000000000100100010110000010111001010000000000000000111100100000000000000000010011100000000000110100000000000010000000000000000000000100000000000010010001011000001011100101111111110000000011110010000000000111111111001110000000000011011111111100001000000000000000000000010000000000001001000101100000101110010100000000000000001111001000000000000000000100111000000000001101000000000000100000000000000000000001000000000000100100010110000010111011001111111100000000111100100000000001111111110011100000000000110111111111000010000000000000000000000100000000000010010001011000001011001000000000000000000000110100000000000000000000000010000000000011010000000011001000000000000000000000010000000000001001000101100000101100100000000000000000000011010000000000000000000000001100000000001101000000001100100000000000000000000001000000000000100100010110000010110000000000000000000000001101000000000000000000000000110000000000110100000000110010000000000000000000000100000000000010010001011000001011000000000000000000000000110100000000000000000000000011000000000011010000000011001000000000000000000000010000000000001001000100000000101100000000000000000000000011010000000000000000000000001100000000001101000000001100100000000000000000000001000000000000100100010000000010110000000000000000000000001101000000000000000000000000110000000000110100000000110010000000000000000000000100000000000010010001000000001011000000000000000000000000110100000000000000000000000011000000000111000000000011001000000000000000000000010000000000001001000111111111101100000000000000000000000011010000000000000000000000001100000000011100000000001100100000000000000000000001000000000000100100010000000010110000000000000000000000001101000000000000000000000000110000000001110000000000110010000000000000000000000100000000000010010011111111111011000000000000000000000000110100000000000000000000000011000000000111000000000011001000000000000000000000010000000000001001001100000000101100000000000000000000000011010000000000000000000000001100000000001101000000001100100000000000000000000001000000000000100100010000000010110000000000000000000000001101000000000000000000000000110000000000110100000000110010000000000000000000000100000000000010010011000000001011000000000000000000000000110100000000000000000000000011000000000011010000000011001000000000000000000000010000000000001001001100000000101100000000000000000000000011010000000000000000000000001100000000001101000000001100100000000000000000000001000000000000100100110000000010111000000000000000000000001101000000000000000000000010110000000000110100000000110010000000000000000000000100000000000010010011000000001011100000000000000000000010110010000000000000000001001011000000000011010000000001001000000000000000000000010000000000001001001100000000101110010100000000000000001111001000000000000000000100111000000000001101000000000000100000000000000000000001000000000000100100110000000010111001011111111100000000111100100000000001111111110011100000000000110111111111000010000000000000000000000100000000000010010011000000001011100101000000000000000011110010000000000000000001001110000000000011010000000000001000000000000000000000010000000000001001001100000000101110110011111111000000001111001000000000011111111100111000000000001101111111110000100000000000000000000001000000000000100100110000000010110010000000000000000000001101000000000000000000000000100000000000110100000000110010000000000000000000000100000000000010010011000000001011001000000000000000000000110100000000000000000000000011000000000011010000000011001000000000000000000000010000000000001001001100000000101100000000000000000000000011010000000000000000000000001100000000001101000000001100100000000000000000000001000000000000100100110000000010110000000000000000000000001101000000000000000000000000110000000000110100000000110010000000000000000000000100000000000010010011000000001011000000000000000000000000110100000000000000000000000011000000000011010000000011001000000000000000000000010000000000001001001100000000101100000000000000000000000011010000000000000000000000001100000000001101000000001100100000000000000000000001000000000000100100110000000010110000000000000000000000001101000000000000000000000000110000000001110000000000110010000000000000000000000100000000000010010011111111111011000000000000000000000000110100000000000000000000000011000000000111000000000011001000000000000000000000010000000000001001001100000000101100000000000000000000000011010000000000000000000000001100000000011100000000001100100000000000000000000001000000000000100100011111111110110000000000000000000000001101000000000000000000000000110000000001110000000000110010000000000000000000000100000000000010010011000000001011000000000000000000000000110100000000000000000000000011000000000011010000000011001000000000000000000000010000000000001001000100000000101100000000000000000000000011010000000000000000000000001100000000001101000000001100100000000000000000000001000000000000100100110000000010110000000000000000000000001101000000000000000000000000110000000000110100000000110010000000000000000000000100000000000010010011000000001011000000000000000000000000110100000000000000000000000011000000000011010000000011001000000000000000000000010000000000001001001100000000101110000000000000000000000011010000000000000000000000101100000000001101000000001100100000000000000000000001000000000000100100110000000010111000000000000000000000101100100000000000000000010010110000000000110100000000010010000000000000000000000100000000000010010011000000001011100101000000000000000011110010000000000000000001001110000000000011010000000000001000000000000000000000010000000000001001001100000000101110010111111111000000001111001000000000011111111100111000000000001101111111110000100000000000000000000001000000000000100100110000000010110001000000000000000000110100100000000000000000010010100000000000110100000000001010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000000010000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000001100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000000110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000000011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000001100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000000110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000000011000000000111000000000011101000000000000000000000010000000000001001001111111111101100000000000000000000000001010000000000000000000000001100000000011100000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000000110000000001110100000000111010000000000000000000000100000000000010010001000000001011000000000000000000000000010100000000000000000000000011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000001100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000000110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000000011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000001100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011000000001011000000000000000000000000010100000000000000000000001011000000000011010000000011101000000000000000000000010000000000001001001100000000101100000000000000000000000001010000000000000000000000101100000000001101000000001110100000000000000000000001000000000000100100110000000010110000000000000000000000000101000000000000000000000010110000000000110100000000111010000000000000000000000100000000000010010011</data>
+          <extradata>1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111T111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111</extradata>
+        </log>
+      </trigger>
+    </signal_set>
+    <position_info>
+      <single attribute="active tab" value="0"/>
+      <single attribute="data horizontal scroll position" value="240"/>
+      <single attribute="data vertical scroll position" value="0"/>
+      <single attribute="setup horizontal scroll position" value="0"/>
+      <single attribute="setup vertical scroll position" value="0"/>
+      <single attribute="zoom level denominator" value="1"/>
+      <single attribute="zoom level numerator" value="16"/>
+      <single attribute="zoom offset denominator" value="16"/>
+      <single attribute="zoom offset numerator" value="130561"/>
+    </position_info>
+  </instance>
+  <mnemonics/>
+  <static_plugin_mnemonics/>
+  <global_info>
+    <single attribute="active instance" value="0"/>
+    <single attribute="lock mode" value="36110"/>
+    <multi attribute="column width" size="23" value="34,34,290,74,68,70,88,88,98,98,88,88,110,101,101,101,101,101,101,101,101,107,78"/>
+    <multi attribute="window position" size="9" value="1272,858,398,124,0,50,124,0,0"/>
+  </global_info>
+</session>
