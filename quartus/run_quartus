@@ -1,1 +1,5 @@
-/home/jente/app/altera/13.0sp1/quartus/bin/quartus --64bit &
+#!/bin/sh
+export QUARTUS_ROOTDIR=/home/jente/app/altera/13.0sp1/quartus
+export QUARTUS_ROOTDIR_OVERRIDE=$QUARTUS_ROOTDIR
+
+$QUARTUS_ROOTDIR/bin/quartus --64bit&

@@ -1,4 +1,6 @@
-# Copyright (C) 1991-2008 Altera Corporation
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 1991-2013 Altera Corporation
 # Your use of Altera Corporation's design tools, logic functions 
 # and other software and tools, and its AMPP partner logic 
 # functions, and any output files from any of the foregoing 
@@ -11,13 +13,19 @@
 # programming logic devices manufactured by Altera and sold by 
 # Altera or its authorized distributors.  Please refer to the 
 # applicable agreement for further details.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus II 64-Bit
+# Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+# Date created = 22:26:02  Dezember 10, 2017
+#
+# -------------------------------------------------------------------------- #
 
-
-
-QUARTUS_VERSION = "8.1"
-DATE = "09:55:13  November 02, 2009"
-
+QUARTUS_VERSION = "13.0"
+DATE = "22:26:02  Dezember 10, 2017"
 
 # Revisions
 
+PROJECT_REVISION = "ftdi_morphic"
 PROJECT_REVISION = "MorphIC_HS_245_Sync_fifo"
