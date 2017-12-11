@@ -28,8 +28,13 @@ create_clock -period "16.666 ns" \
 
 
 # Original Clock Setting Name: clk1
+<<<<<<< HEAD
 create_clock -period "20 ns" \
              -name {clk50} {clk50}
+=======
+#create_clock -period "16.666 ns" \
+#             -name {hclk60} {hclk60}
+>>>>>>> refs/remotes/origin/master
 # ---------------------------------------------
 
 #create_clock -period 16.666 -name CLK_245_M [get_ports {mclk60}]

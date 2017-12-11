@@ -1,2 +1,6 @@
+<<<<<<< HEAD
 Created on:Montag, Dezember 11, 2017
+=======
+Created on:Sonntag, Dezember 10, 2017
+>>>>>>> refs/remotes/origin/master
 Based on:MorphIC_HS_245_Sync_fifo

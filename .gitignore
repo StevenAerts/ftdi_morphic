@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ftdi_morphic.geany
 modelsim/ftdi_morphic.cr.mti
 modelsim/transcript
@@ -24,3 +25,27 @@ quartus/ftdi_morphic.fit.smsg
 quartus/ftdi_morphic.sof
 quartus/ftdi_morphic.qarlog
 quartus/ftdi_morphic.jdi
+=======
+ftdi_morphic.cr.mti
+transcript
+vlog.opt
+vsim.wlf
+work
+db
+ftdi_morphic.asm.rpt
+ftdi_morphic.eda.rpt
+ftdi_morphic.fit.rpt
+ftdi_morphic.flow.rpt
+ftdi_morphic.map.rpt
+ftdi_morphic.sta.rpt
+ftdi_morphic.fit.summary
+ftdi_morphic.map.summary
+ftdi_morphic.sta.summary
+ftdi_morphic.done
+incremental_db
+simulation
+ftdi_morphic.jdi
+ftdi_morphic.qws
+ftdi_morphic.sof
+ftdi_morphic_assignment_defaults.qdf
+>>>>>>> refs/remotes/origin/master
