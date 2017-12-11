@@ -16,3 +16,11 @@ quartus/ftdi_morphic.fit.summary
 quartus/ftdi_morphic.map.summary
 quartus/ftdi_morphic.sta.summary
 quartus/incremental_db/
+quartus/simulation/
+quartus/vhdl/
+quartus/ftdi_morphic.done
+quartus/ftdi_morphic.qws
+quartus/ftdi_morphic.fit.smsg
+quartus/ftdi_morphic.sof
+quartus/ftdi_morphic.qarlog
+quartus/ftdi_morphic.jdi
