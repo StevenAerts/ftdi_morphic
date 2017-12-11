@@ -18,14 +18,13 @@
 #
 # Quartus II 64-Bit
 # Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-# Date created = 22:26:02  Dezember 10, 2017
+# Date created = 02:07:43  Dezember 11, 2017
 #
 # -------------------------------------------------------------------------- #
 
 QUARTUS_VERSION = "13.0"
-DATE = "22:26:02  Dezember 10, 2017"
+DATE = "02:07:43  Dezember 11, 2017"
 
 # Revisions
 
 PROJECT_REVISION = "ftdi_morphic"
-PROJECT_REVISION = "MorphIC_HS_245_Sync_fifo"
