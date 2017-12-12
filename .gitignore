@@ -49,3 +49,5 @@ ftdi_morphic.qws
 ftdi_morphic.sof
 ftdi_morphic_assignment_defaults.qdf
 >>>>>>> refs/remotes/origin/master
+quartus/out_directory_tmp.txt.tmp
+quartus/ftdi_morphic.restore.rpt

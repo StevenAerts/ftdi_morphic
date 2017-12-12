@@ -176,7 +176,7 @@ io[65]                       : G13       : bidir  : 3.3-V LVTTL       :         
 VCCIO3                       : G14       : power  :                   : 3.3V    : 3         :                
 GND*                         : G15       :        :                   :         : 3         :                
 io[69]                       : G16       : bidir  : 3.3-V LVTTL       :         : 3         : Y              
-clk50                        : H1        : input  : 3.3-V LVTTL       :         : 1         : Y              
+GND+                         : H1        :        :                   :         : 1         :                
 GND+                         : H2        :        :                   :         : 1         :                
 GND                          : H3        : gnd    :                   :         :           :                
 DCLK                         : H4        :        :                   :         : 1         :                
@@ -207,7 +207,7 @@ io[68]                       : J12       : bidir  : 3.3-V LVTTL       :         
 MSEL0                        : J13       :        :                   :         : 3         :                
 GND                          : J14       : gnd    :                   :         :           :                
 GND+                         : J15       :        :                   :         : 3         :                
-GND+                         : J16       :        :                   :         : 3         :                
+clk50                        : J16       : input  : 3.3-V LVTTL       :         : 3         : Y              
 io[0]                        : K1        : bidir  : 3.3-V LVTTL       :         : 1         : Y              
 moen                         : K2        : output : 3.3-V LVTTL       :         : 1         : Y              
 VCCIO1                       : K3        : power  :                   : 3.3V    : 1         :                

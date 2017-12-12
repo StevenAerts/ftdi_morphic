@@ -1,0 +1,1 @@
+./ftdi_morphic -v3 --program ../quartus/ftdi_morphic.rbf --test

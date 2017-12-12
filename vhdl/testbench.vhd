@@ -43,51 +43,99 @@ stim_proc: process
 
 variable my_line : line;
 
-procedure writebytes(bytes: in integer_vector) is
+procedure writebyte(byte: in std_logic_vector(7 downto 0)) is
 begin
     rxfn <= '0';
-	for ibyte in bytes'range loop
-        datai <= std_logic_vector(to_unsigned(bytes(ibyte), datai'length));
-        wait until rising_edge(clk);
-        while rdn /= '0' loop
-            wait until rising_edge(clk);
-        end loop;
-        write(my_line, id);
-        write(my_line, string'(" write "));
-        write(my_line, data);
-        writeline(output, my_line);
-    end loop;
+	datai <= byte;
+	wait until rising_edge(clk);
+	while rdn /= '0' loop
+		wait until rising_edge(clk);
+	end loop;
+	write(my_line, id);
+	write(my_line, string'(" write "));
+	write(my_line, data);
+	writeline(output, my_line);
     rxfn <= '1';
-end writebytes;
+end writebyte;
 
-procedure readbytes(bytes: out integer_vector) is
+procedure readbyte(byte: out std_logic_vector(7 downto 0)) is
 
 begin
     txen <= '0';
-	for ibyte in bytes'range loop
-        wait until rising_edge(clk);
-        while wrn /= '0' loop
-            wait until rising_edge(clk);
-        end loop;
-        write(my_line, id);
-        write(my_line, string'(" read "));
-        write(my_line, data);
-        bytes(ibyte) := to_integer(unsigned(data));
-        writeline(output, my_line);
-    end loop;
+	wait until rising_edge(clk);
+	while wrn /= '0' loop
+		wait until rising_edge(clk);
+	end loop;
+	write(my_line, id);
+	write(my_line, string'(" read "));
+	write(my_line, data);
+	byte:= data;
+	writeline(output, my_line);
     txen <= '1';
-end readbytes;
+end readbyte;
 
-variable bytes: integer_vector(3 downto 0) := (0,1,2,3);
+constant syncA: std_logic_vector(7 downto 0) := "10101000";
+constant syncB: std_logic_vector(7 downto 0) := "10111000";
+constant loop4: std_logic_vector(7 downto 0) := "10101100";
+constant linvn: std_logic_vector(7 downto 0) := "10111110";
+variable rbyte: std_logic_vector(7 downto 0);
 
 begin
     datai <= (others => '0'); rxfn <= '1'; txen <= '1';
 
-    writebytes(bytes);
-    readbytes(bytes);
+    report "Test synchronization sequence";
+    writebyte(syncA); readbyte(rbyte); assert rbyte=syncA report "read mismatch" severity warning;
+    writebyte(syncA); readbyte(rbyte); assert rbyte=syncA report "read mismatch" severity warning;
+    writebyte(syncA); writebyte(syncA); writebyte(syncA); writebyte(syncA);
+    readbyte(rbyte);  readbyte(rbyte);  readbyte(rbyte);  readbyte(rbyte);
+    writebyte(syncB); readbyte(rbyte); assert rbyte=syncB report "read mismatch" severity warning;
+    report "Test loopback (4 bytes)";
+    writebyte(loop4); readbyte(rbyte); assert rbyte=loop4 report "read mismatch" severity warning;
+    writebyte("00000000"); writebyte("00000001"); 
+    writebyte("00000010"); writebyte("00000011");
+    readbyte(rbyte); assert rbyte="00000000" report "read mismatch" severity warning;
+    readbyte(rbyte); assert rbyte="00000001" report "read mismatch" severity warning;
+    readbyte(rbyte); assert rbyte="00000010" report "read mismatch" severity warning;
+    readbyte(rbyte); assert rbyte="00000011" report "read mismatch" severity warning;
+    report "Test loopback invert n (8 bytes)";
+    writebyte(linvn); writebyte("00001000"); -- 8 bytes
+    readbyte(rbyte); assert rbyte=linvn report "read mismatch" severity warning;
+    readbyte(rbyte); assert rbyte="00001000" report "read mismatch" severity warning; 
+    writebyte("00000000"); writebyte("00000001"); 
+    writebyte("00000010"); writebyte("00000011");
+    readbyte(rbyte); assert rbyte="11111111" report "read mismatch" severity warning;
+    readbyte(rbyte); assert rbyte="11111110" report "read mismatch" severity warning;
+    readbyte(rbyte); assert rbyte="11111101" report "read mismatch" severity warning;
+    readbyte(rbyte); assert rbyte="11111100" report "read mismatch" severity warning;
+    writebyte("00000100"); writebyte("00000101"); 
+    writebyte("00000110"); writebyte("00000111");
+    readbyte(rbyte); assert rbyte="11111011" report "read mismatch" severity warning;
+    readbyte(rbyte); assert rbyte="11111010" report "read mismatch" severity warning;
+    readbyte(rbyte); assert rbyte="11111001" report "read mismatch" severity warning;
+    readbyte(rbyte); assert rbyte="11111000" report "read mismatch" severity warning;
+    report "1-byte commands";
+    writebyte("00001000"); 
+    writebyte("00010000"); 
+    writebyte("00100000"); 
+    writebyte("01000000"); 
+    writebyte("10000000"); 
+    report "2,3,4,5-byte commands";
+    writebyte("00001001"); writebyte("00000000");
+    writebyte("00010010"); writebyte("00000000"); writebyte("00000001");
+    writebyte("00100011"); writebyte("00000000"); writebyte("00000001"); writebyte("00000010");
+    writebyte("01000100"); writebyte("00000000"); writebyte("00000001"); writebyte("00000010"); writebyte("00000011"); 
+    writebyte("10000110"); writebyte("00000000"); writebyte("00000001"); writebyte("00000010"); writebyte("00000011"); writebyte("00000100"); 
+    report "Test loopback (4 bytes)";
+    writebyte(loop4); readbyte(rbyte); assert rbyte=loop4 report "read mismatch" severity warning;
+    writebyte("00000000"); writebyte("00000001"); 
+    writebyte("00000010"); writebyte("00000011");
+    readbyte(rbyte); assert rbyte="00000000" report "read mismatch" severity warning;
+    readbyte(rbyte); assert rbyte="00000001" report "read mismatch" severity warning;
+    readbyte(rbyte); assert rbyte="00000010" report "read mismatch" severity warning;
+    readbyte(rbyte); assert rbyte="00000011" report "read mismatch" severity warning;
+    
     wait;
 end process stim_proc;
-
 
 end proc;
 

@@ -1,5 +1,6 @@
 library ieee;
 use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
 
 entity ftdi_morphic is
    port (-- Inputs
@@ -73,6 +74,11 @@ end component;
 
   signal io_in, io_out, io_oe: std_logic_vector(79 downto 0);
 
+  signal bytes_left, bytes_left_next: integer range 0 to 65535;
+  signal cmd_saved, cmd_saved_next: std_logic_vector(4 downto 0);
+  signal need_bytes_msb, need_bytes_msb_next : std_logic;
+  signal need_bytes_lsb, need_bytes_lsb_next : std_logic;
+  
 begin
 
 io_in <= io;
@@ -92,14 +98,6 @@ mrd_inv:	mrdn <= not mrd;
 mwr_inv:	mwrn <= not mwr;
 msndimm_o:	msndimm <= '1';
 
-dummy_proc: process(clk50)
-begin
-  if rising_edge(clk50) then
-	--if rst = '1' then
-	io_out(0) <= io_in(1);
-  end if;
-end process dummy_proc;
-
 sync1 : sync_fifo 
    port map(                                 
       reset_n  => reset_n,
@@ -109,7 +107,7 @@ sync1 : sync_fifo
       s_txe    => s1_txe,
       s_dbin   => int_mdatain,
 
-      d_clk    => mclk60,
+      d_clk    => clk50,
       d_rd     => s1_rd,
       d_rxf    => s1_rxf,
       d_dbout  => int_adatain
@@ -119,7 +117,7 @@ sync2 : sync_fifo
    port map(                                 
       reset_n  => reset_n,
 
-      s_clk    => mclk60,
+      s_clk    => clk50,
       s_wr     => s2_wr,
       s_txe    => s2_txe,
       s_dbin   => int_adataout,
@@ -129,10 +127,84 @@ sync2 : sync_fifo
       d_rxf    => s2_rxf,
       d_dbout  => int_mdataout
    );
+   
+dummy_proc: process(clk50)
+begin
+  if rising_edge(clk50) then
+	if rst = '1' then
+	  bytes_left <= 0;
+	  cmd_saved <= (others => '0');
+	  need_bytes_msb <= '0';
+	  need_bytes_lsb <= '0';
+	else
+	  bytes_left <= bytes_left_next;
+	  cmd_saved  <= cmd_saved_next;
+	  need_bytes_msb <= need_bytes_msb_next;
+	  need_bytes_lsb <= need_bytes_lsb_next;
+	end if;
+	--io_out(0) <= io_in(1);
+  end if;
+end process dummy_proc;
 
-int_adataout <= int_adatain;
-s2_wr <= s1_rd ;
-s1_rd <= s1_rxf and s2_txe;
+decoder:process(int_adatain, s1_rxf, s2_txe, bytes_left, cmd_saved, 
+	need_bytes_msb, need_bytes_lsb)
+begin
+  bytes_left_next <= bytes_left;
+  cmd_saved_next <= cmd_saved;
+  need_bytes_msb_next <= need_bytes_msb;
+  need_bytes_lsb_next <= need_bytes_lsb;
+  s1_rd <= '0'; s2_wr <= '0';
+  int_adataout <= (others => '0');
+  if s1_rxf = '1' and s2_txe = '1' then
+	s1_rd <= '1';
+    if need_bytes_msb = '1' then
+	  need_bytes_msb_next <= '0';
+	  bytes_left_next <= to_integer(unsigned(int_adatain&"00000000"));
+	  case cmd_saved is
+	    when "10101" | "10111" => 
+			s2_wr <= '1'; 
+			int_adataout <= int_adatain;
+		when others => NULL;
+	  end case;
+	elsif need_bytes_lsb = '1' then
+	  case cmd_saved is
+	    when "10101" | "10111" => 
+			s2_wr <= '1'; 
+			int_adataout <= int_adatain;
+		when others => NULL;
+	  end case;
+	  need_bytes_lsb_next <= '0';
+	  bytes_left_next <= to_integer(to_unsigned(bytes_left,16)(15 downto 7)&unsigned(int_adatain));
+	elsif bytes_left > 0 then
+	  bytes_left_next <= bytes_left - 1;
+	  case cmd_saved is
+	    when "10101" => 
+			s2_wr <= '1'; 
+			int_adataout <= int_adatain;
+	    when "10111" => 
+			s2_wr <= '1'; 
+			int_adataout <= not int_adatain;
+		when others => NULL;
+	  end case;
+    else
+	  cmd_saved_next <= int_adatain(7 downto 3);
+	  case int_adatain(7 downto 3) is
+	    when "10101" | "10111" => 
+			s2_wr <= '1'; 
+			int_adataout <= int_adatain;
+		when others => NULL;
+	  end case;
+	  if int_adatain(2 downto 0) = "111" then
+		need_bytes_msb_next <= '1';
+		need_bytes_lsb_next <= '1';
+	  elsif int_adatain(2 downto 0) = "110" then
+		need_bytes_lsb_next <= '1';
+	  else
+		bytes_left_next <= to_integer(unsigned(int_adatain(2 downto 0)));
+	  end if;
+    end if;
+  end if;
+end process;
 
 xfer1 : hs245_sif 
   port map(                                 
@@ -154,9 +226,6 @@ xfer1 : hs245_sif
     int_txe     => s1_txe,
     int_wr      => s1_wr
  );
-
-
-
 
 end rtl;
 

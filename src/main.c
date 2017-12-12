@@ -22,6 +22,7 @@ enum {
 	APP_PROGRAM,
 	APP_PARSE_OPTIONS, 
 	APP_MAIN, 
+	APP_TEST,
 	APP_GET_PROGRAM_STATUS_BITS,
 	APP_OTHER_FUNCTION
 };
@@ -38,6 +39,10 @@ enum {
 	APP_NO_DEVICE_FOUND,
 	APP_NO_PROGRAMMING_DEVICE,
 	APP_NO_DATA_DEVICE,
+	APP_TEST_LOOPBACK_FAILED,
+	APP_TEST_LOOPBACKINVERT_FAILED,
+	APP_TEST_LOOPBACKINVERTN_FAILED,
+	APP_TEST_UNEXPECTED_RESPONSE_DATA,
 	APP_OTHER_ERROR
 };
 // Application function strings
@@ -48,6 +53,7 @@ const char* USER_FUNCTION_STR[] = {
 	"APP_PROGRAM",
 	"APP_PARSE_OPTIONS", 
 	"APP_MAIN", 
+	"APP_TEST",
 	"APP_GET_PROGRAM_STATUS_BITS",
 	"APP_OTHER"
 };
@@ -64,16 +70,24 @@ const char* USER_STATUS_STR[] = {
 	"APP_NO_DEVICE_FOUND",
 	"APP_NO_PROGRAMMING_DEVICE",
 	"APP_NO_DATA_DEVICE",
+	"APP_TEST_LOOPBACK_FAILED",
+	"APP_TEST_LOOPBACKINVERT_FAILED",
+	"APP_TEST_LOOPBACKINVERTN_FAILED",
+	"APP_TEST_UNEXPECTED_RESPONSE_DATA"
 	"APP_OTHER"
 };
 
 struct {
 	char* programFileName;
 	int noData;
+	int noSync;
+	int test;
 	int verbosity;
 } options = {
 	.programFileName = NULL,
 	.noData = 0,
+	.noSync = 0,
+	.test = 0,
 	.verbosity = 2
 };
 
@@ -91,10 +105,9 @@ static void verbosity_printf(int verbosity, const char* format, ...)
 
 static void verbosity_dumpBuffer(int verbosity, const unsigned char *buffer, int elements, const char *title)
 {
-	int j;
 	if(title==NULL) title="";
 	verbosity_printf(verbosity, "%s [", title);
-	for (j = 0; j < elements; j++)
+	for (int j = 0; j < elements; j++)
 	{
 		if (j > 0)
 			verbosity_printf(verbosity, ", ");
@@ -125,12 +138,13 @@ static DWORD readAll(FT_HANDLE ftHandle, unsigned char** ppcBufRead)
 	return readBytes(ftHandle, *ppcBufRead, dwRxSize);
 }
 
-static void clearRxBuffer(FT_HANDLE ftHandle)
+static int clearRxBuffer(FT_HANDLE ftHandle)
 {
 	verbosity_printf(2, "Clearing RX buffer\n");
 	unsigned char *pcBufRead=NULL;
-	readAll(ftHandle, &pcBufRead);
+	int n = readAll(ftHandle, &pcBufRead);
 	if(pcBufRead != NULL) free(pcBufRead);
+	return n;
 }
 
 static void waitForData(FT_HANDLE ftHandle, int timeoutMs) 
@@ -310,6 +324,74 @@ static void checkProgrammed(FT_HANDLE ftHandle)
 		FTC_THROWE(APP_PROGRAM, APP_PROGRAM_NOT_DONE);*/
 }
 
+static int testdiff(const unsigned char *bufferA, const unsigned char *bufferB, int invertfrom, int total)
+{
+	if(invertfrom < 0) invertfrom = total;
+	for (int i = 0; i < invertfrom; i++)
+		if(bufferA[i] != bufferB[i]) return 1; 
+	for (int j = invertfrom; j < total; j++) {
+		unsigned char b = ~bufferB[j];
+		if(bufferA[j] != b) return 1; 
+	}
+	return 0;
+}
+static void test(FT_HANDLE ftHandle)
+{
+	unsigned char loopback4[] = {
+		0xA8+4, 0, 1, 2, 3
+	}, loopback4_result[sizeof(loopback4)];
+	
+	writeBytes(ftHandle, loopback4, sizeof(loopback4));
+	readBytes(ftHandle, loopback4_result, sizeof(loopback4));
+	
+	if(testdiff(loopback4, loopback4_result, -1, sizeof(loopback4)))
+		FTC_THROWE(APP_TEST, APP_TEST_LOOPBACK_FAILED);
+
+	unsigned char loopbackInvert5[] = {
+		0xB8+5, 0, 1, 2, 3, 4
+	}, loopbackInvert5_result[sizeof(loopbackInvert5)];
+	
+	writeBytes(ftHandle, loopbackInvert5, sizeof(loopbackInvert5));
+	readBytes(ftHandle, loopbackInvert5_result, sizeof(loopbackInvert5));
+	
+	if(testdiff(loopbackInvert5, loopbackInvert5_result,1,sizeof(loopbackInvert5)))
+		FTC_THROWE(APP_TEST, APP_TEST_LOOPBACKINVERT_FAILED);
+
+	unsigned char loopbackInvertN8[] = {
+		0xB8+6, 8, 0, 1, 2, 3, 4, 5, 6, 7
+	}, loopbackInvertN8_result[sizeof(loopbackInvertN8)];
+	
+	writeBytes(ftHandle, loopbackInvertN8, sizeof(loopbackInvertN8));
+	readBytes(ftHandle, loopbackInvertN8_result, sizeof(loopbackInvertN8));
+	
+	if(testdiff(loopbackInvertN8, loopbackInvertN8_result,2,sizeof(loopbackInvertN8)))
+		FTC_THROWE(APP_TEST, APP_TEST_LOOPBACKINVERTN_FAILED);
+
+	if(clearRxBuffer(ftHandle) !=0)
+		FTC_THROWE(APP_TEST, APP_TEST_UNEXPECTED_RESPONSE_DATA);
+	
+	unsigned char commands[] = {
+		0x00, 
+		0x10,
+		0x21, 	0,
+		0x42, 	0, 1, 
+		0x83, 	0, 1, 2,
+		0x34, 	0, 1, 2, 3,
+		0x75, 	0, 1, 2, 3, 4,
+		0x96,8, 0, 1, 2, 3, 4, 5, 6, 7
+	};
+	writeBytes(ftHandle, commands, sizeof(commands));
+	
+	if(clearRxBuffer(ftHandle) !=0)
+		FTC_THROWE(APP_TEST, APP_TEST_UNEXPECTED_RESPONSE_DATA);
+
+	writeBytes(ftHandle, loopback4, sizeof(loopback4));
+	readBytes(ftHandle, loopback4_result, sizeof(loopback4));
+	
+	if(testdiff(loopback4, loopback4_result, -1, sizeof(loopback4)))
+		FTC_THROWE(APP_TEST, APP_TEST_LOOPBACK_FAILED);
+}
+
 
 void parseOptions(int argc, char **argv)
 {
@@ -318,6 +400,8 @@ void parseOptions(int argc, char **argv)
         static struct option long_options[] = {
             {"program", required_argument, 0,  0 },
             {"nodata",  no_argument, 	   0,  0 },
+            {"test",    no_argument,	   0,  0 },
+            {"nosync",  no_argument, 	   0,  0 },
             {0,         0,                 0,  0 }
         };
 		int c = getopt_long(argc, argv, ":v:", long_options, &option_index);
@@ -332,6 +416,12 @@ void parseOptions(int argc, char **argv)
 					break;
 				case 1:
 					options.noData = 1;
+					break;
+				case 2:
+					options.test = 1;
+					break;
+				case 3:
+					options.noSync = 1;
 					break;
 				default:
 					FTC_THROWE(APP_PARSE_OPTIONS, APP_OPTION_NOT_HANDLED);
@@ -376,7 +466,7 @@ FTC_TRY(ftcFunc)
 	pcBufLD[MAX_DEVICES] = NULL;
 
 	// Add custom VID/PID
-	FTC_SetVIDPID(0x0403, 0x9842);
+	// FTC_SetVIDPID(0x0403, 0x9842);
 
 	// List devices
 	FTC_ListDevices(pcBufLD, &iNumDevs, FT_LIST_ALL | FT_OPEN_BY_SERIAL_NUMBER);
@@ -411,8 +501,8 @@ FTC_TRY(ftcFunc)
 
 	FTC_ResetDevice(ftHandleProg);
 	FTC_ResetDevice(ftHandleMain);
-	FTC_SetBitMode(ftHandleMain, 0, FT_BITMODE_MPSSE); // In case it was still in FIFO mode
-	FTC_SetBitMode(ftHandleProg, 0, FT_BITMODE_MPSSE); // In case it was still in FIFO mode
+	FTC_SetBitMode(ftHandleMain, 0, FT_BITMODE_MPSSE);
+	FTC_SetBitMode(ftHandleProg, 0, FT_BITMODE_MPSSE);
 	
 	if(options.programFileName != NULL) {
 		program(ftHandleProg, options.programFileName);
@@ -423,117 +513,22 @@ FTC_TRY(ftcFunc)
 	if(options.noData)
 		return 0;
 	
-	//FTC_SetBitMode(ftHandleProg, 0, FT_BITMODE_SYNC_FIFO);
 	FTC_ResetDevice(ftHandleProg);
 	FTC_ResetDevice(ftHandleMain);
 	FTC_SetBitMode(ftHandleMain, 0, FT_BITMODE_SYNC_FIFO);
 	FTC_SetFlowControl(ftHandleMain, FT_FLOW_RTS_CTS, 0, 0);
 
-	// Open device
-	//ftHandle = FTC_OpenEx(cBufLD[iSelectedMain], FT_OPEN_BY_SERIAL_NUMBER);
-	//verbosity_printf(2, "Opened device %s\n", cBufLD[iSelectedMain]);
-	
-#if 1
-	//FTC_SetBitMode(ftHandle, 0, FT_BITMODE_SYNC_FIFO);
-
-	unsigned char data[] = {
-		0x01, 	0x23,
-		0x45, 	0x67,	
-		0x89
-	};
-	writeBytes(ftHandleMain, data, sizeof(data));
-	readBytes(ftHandleMain, data, sizeof(data));
-#else
-	FTC_ResetDevice(ftHandle);
-	FTC_ResetDevice(ftHandle);
-	FTC_ResetDevice(ftHandle);
-	FTC_SetBitMode(ftHandle, 0, FT_BITMODE_MPSSE);
-	
-	unsigned char data[] = {
-		0x01, 	0x23,
-		0x45, 	0x67,	
-		0x89
-	};
-	writeBytes(ftHandle, data, sizeof(data));
-	readBytes(ftHandle, data, sizeof(data));
-	nread = readAll(ftHandle, &buf);
-	printf("read %d bytes, all 0xFF except:\n", nread);
-	for(int i=0; i<nread; i++)
-		if(buf[i] != 0xFF)
-			printf("%d: 0x%02X\n", i, buf[i]);
-	free(buf);
-#endif
-	
-	//cmnd := CMND_WR_EN or PORT_A;
-	//data1 := portA_dir;
-	//Write_cmnd;
-   //cmnd := CMND_WR or PORT_A;
-   //data1 := portA_Out;
-   //Write_cmnd;
-
-	/*
-	// Clear read buffer if any
-	ftStatus = FT_GetQueueStatus(ftHandle, &dwRxSize);
-	if (ftStatus != FT_OK)
-	{
-		verbosity_printf(1, "FT_GetQueueStatus failed (%d).\n", (int)ftStatus);
-		goto closeDev;
-		
+	if(!options.noSync) {
+		unsigned char syncMain[] = {
+			0xA8, 	0xA8,	0xA8,	0xA8, 	0xA8,
+			0xA8, 	0xA8,	0xA8,	0xA8, 	0xA8,
+			0xB8
+		};
+		writeBytes(ftHandleMain, syncMain, sizeof(syncMain));
+		readBytes(ftHandleMain, syncMain, sizeof(syncMain));
 	}
-	verbosity_printf(2, "Emptying read buffer (%d bytes)\n", dwRxSize);
-	while(dwRxSize > 0)
-	{
-		ftStatus = FT_Read(ftHandle, cBufRead, MIN(dwRxSize, BUF_SIZE*2), &dwBytesRead);
-		if (ftStatus != FT_OK) {
-			verbosity_printf(1, "Error FT_Read(%d)\n", (int)ftStatus);
-			goto closeDev;
-		} 
-		dwRxSize -= dwBytesRead;
-	}
-	
-	// Fill write buffer
-	for(j = 0; j < BUF_SIZE; j++) {
-		cBufWrite[j] = 0xAA;
-	}
-	cBufWrite[BUF_SIZE-1] = 0xAB;
-	
-	// Write buffer
-	verbosity_printf(2, "Calling FT_Write with this write-buffer:\n");
-	if(verbosity >= 2) dumpBuffer(cBufWrite, BUF_SIZE);
-	ftStatus = FT_Write(ftHandle, cBufWrite, BUF_SIZE, &dwBytesWritten);
-	if (ftStatus != FT_OK) {
-		verbosity_printf(1, "Error FT_Write(%d)\n", (int)ftStatus);
-		goto closeDev;
-	} else if (dwBytesWritten != (DWORD)BUF_SIZE) {
-		verbosity_printf(1, "FT_Write only wrote %d (of %d) bytes\n", (int)dwBytesWritten, BUF_SIZE);
-		goto closeDev;
-	}
-	
-	// Read buffer
-	dwRxSize = 0;
-	while(dwRxSize < 2*BUF_SIZE) {
-		ftStatus = FT_GetQueueStatus(ftHandle, &dwRxSize);
-		if (ftStatus != FT_OK)
-		{
-			verbosity_printf(1, "FT_GetQueueStatus failed (%d).\n", (int)ftStatus);
-			goto closeDev;
-		}
-		verbosity_printf(2, "FT_GetQueueStatus: %d\n", dwRxSize);
-		sleep(1);
-	}
-	verbosity_printf(2, "Calling FT_Read with this read-buffer:\n");
-	if(verbosity >= 2) dumpBuffer(cBufRead, dwRxSize);
-	ftStatus = FT_Read(ftHandle, cBufRead, dwRxSize, &dwBytesRead);
-	if (ftStatus != FT_OK) {
-		verbosity_printf(1, "Error FT_Read(%d)\n", (int)ftStatus);
-		goto closeDev;
-	} else if (dwBytesRead != dwRxSize) {
-		verbosity_printf(1, "FT_Read only read %d (of %d) bytes\n", (int)dwBytesRead, (int)dwRxSize);
-		goto closeDev;
-	}
-	verbosity_printf(2, "FT_Read read %d bytes.  Read-buffer is now:\n", (int)dwBytesRead);
-	if(verbosity >= 2) dumpBuffer(cBufRead, (int)dwBytesRead);
-	*/
+	if(options.test) 
+		test(ftHandleMain);
 
 	FTC_Close(ftHandleMain);
 	verbosity_printf(2, "Closed device %s\n", cBufLD[iSelectedMain]);
