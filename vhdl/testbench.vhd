@@ -19,7 +19,8 @@ entity fifo_stim is
 	txen     		: out 	std_logic;
 	rdn      		: in  	std_logic;
 	wrn      		: in  	std_logic;
-	oen      		: in  	std_logic
+	oen      		: in  	std_logic;
+	io				: inout std_logic_vector(79 downto 0)
   );
 end fifo_stim;
 
@@ -84,55 +85,87 @@ begin
     datai <= (others => '0'); rxfn <= '1'; txen <= '1';
 
     report "Test synchronization sequence";
-    writebyte(syncA); readbyte(rbyte); assert rbyte=syncA report "read mismatch" severity warning;
-    writebyte(syncA); readbyte(rbyte); assert rbyte=syncA report "read mismatch" severity warning;
+    writebyte(syncA); readbyte(rbyte); assert rbyte=syncA report "read mismatch" severity error;
+    writebyte(syncA); readbyte(rbyte); assert rbyte=syncA report "read mismatch" severity error;
     writebyte(syncA); writebyte(syncA); writebyte(syncA); writebyte(syncA);
     readbyte(rbyte);  readbyte(rbyte);  readbyte(rbyte);  readbyte(rbyte);
-    writebyte(syncB); readbyte(rbyte); assert rbyte=syncB report "read mismatch" severity warning;
+    writebyte(syncB); readbyte(rbyte); assert rbyte=syncB report "read mismatch" severity error;
+    
     report "Test loopback (4 bytes)";
-    writebyte(loop4); readbyte(rbyte); assert rbyte=loop4 report "read mismatch" severity warning;
+    writebyte(loop4); readbyte(rbyte); assert rbyte=loop4 report "read mismatch" severity error;
     writebyte("00000000"); writebyte("00000001"); 
     writebyte("00000010"); writebyte("00000011");
-    readbyte(rbyte); assert rbyte="00000000" report "read mismatch" severity warning;
-    readbyte(rbyte); assert rbyte="00000001" report "read mismatch" severity warning;
-    readbyte(rbyte); assert rbyte="00000010" report "read mismatch" severity warning;
-    readbyte(rbyte); assert rbyte="00000011" report "read mismatch" severity warning;
+    readbyte(rbyte); assert rbyte="00000000" report "read mismatch" severity error;
+    readbyte(rbyte); assert rbyte="00000001" report "read mismatch" severity error;
+    readbyte(rbyte); assert rbyte="00000010" report "read mismatch" severity error;
+    readbyte(rbyte); assert rbyte="00000011" report "read mismatch" severity error;
+    
     report "Test loopback invert n (8 bytes)";
     writebyte(linvn); writebyte("00001000"); -- 8 bytes
-    readbyte(rbyte); assert rbyte=linvn report "read mismatch" severity warning;
-    readbyte(rbyte); assert rbyte="00001000" report "read mismatch" severity warning; 
+    readbyte(rbyte); assert rbyte=linvn report "read mismatch" severity error;
+    readbyte(rbyte); assert rbyte="00001000" report "read mismatch" severity error; 
     writebyte("00000000"); writebyte("00000001"); 
     writebyte("00000010"); writebyte("00000011");
-    readbyte(rbyte); assert rbyte="11111111" report "read mismatch" severity warning;
-    readbyte(rbyte); assert rbyte="11111110" report "read mismatch" severity warning;
-    readbyte(rbyte); assert rbyte="11111101" report "read mismatch" severity warning;
-    readbyte(rbyte); assert rbyte="11111100" report "read mismatch" severity warning;
+    readbyte(rbyte); assert rbyte="11111111" report "read mismatch" severity error;
+    readbyte(rbyte); assert rbyte="11111110" report "read mismatch" severity error;
+    readbyte(rbyte); assert rbyte="11111101" report "read mismatch" severity error;
+    readbyte(rbyte); assert rbyte="11111100" report "read mismatch" severity error;
     writebyte("00000100"); writebyte("00000101"); 
     writebyte("00000110"); writebyte("00000111");
-    readbyte(rbyte); assert rbyte="11111011" report "read mismatch" severity warning;
-    readbyte(rbyte); assert rbyte="11111010" report "read mismatch" severity warning;
-    readbyte(rbyte); assert rbyte="11111001" report "read mismatch" severity warning;
-    readbyte(rbyte); assert rbyte="11111000" report "read mismatch" severity warning;
+    readbyte(rbyte); assert rbyte="11111011" report "read mismatch" severity error;
+    readbyte(rbyte); assert rbyte="11111010" report "read mismatch" severity error;
+    readbyte(rbyte); assert rbyte="11111001" report "read mismatch" severity error;
+    readbyte(rbyte); assert rbyte="11111000" report "read mismatch" severity error;
+    
     report "1-byte commands";
     writebyte("00001000"); 
     writebyte("00010000"); 
     writebyte("00100000"); 
-    writebyte("01000000"); 
-    writebyte("10000000"); 
+
     report "2,3,4,5-byte commands";
     writebyte("00001001"); writebyte("00000000");
     writebyte("00010010"); writebyte("00000000"); writebyte("00000001");
     writebyte("00100011"); writebyte("00000000"); writebyte("00000001"); writebyte("00000010");
-    writebyte("01000100"); writebyte("00000000"); writebyte("00000001"); writebyte("00000010"); writebyte("00000011"); 
-    writebyte("10000110"); writebyte("00000000"); writebyte("00000001"); writebyte("00000010"); writebyte("00000011"); writebyte("00000100"); 
+    writebyte("00100100"); writebyte("00000000"); writebyte("00000001"); writebyte("00000010"); writebyte("00000011"); 
+    
+    report "n-byte command (1-byte len)";
+    writebyte("00100110"); writebyte("00000101"); writebyte("00000000"); writebyte("00000001"); writebyte("00000010"); writebyte("00000011"); writebyte("00000100"); 
+    
+    report "n-byte command (2-byte len)";
+    writebyte("00100111"); writebyte("00000000"); writebyte("00000101"); writebyte("00000000"); writebyte("00000001"); writebyte("00000010"); writebyte("00000011"); writebyte("00000100"); 
+    
+    --report "I/O test";
+    --writebyte("01000010"); writebyte("00000001"); 
+    --writebyte("00000011"); assert io(1) = '1' report "I/O test mismatch";
+    --writebyte("01000011"); writebyte("00000010"); 
+    --writebyte("00000011"); assert io(2) = '1' report "I/O test mismatch"; 
+    --writebyte("00000010"); assert io(2) = '1' report "I/O test mismatch"; 
+    --writebyte("01000011"); writebyte("00000011"); 
+    --io <= (others => 'H');
+    --writebyte("00001000"); assert io(3) = 'H' report "I/O test mismatch"; 
+    --io <= (others => 'L');
+    --writebyte("00001000"); assert io(3) = 'L' report "I/O test mismatch"; 
+    --readbyte(rbyte); assert rbyte = "0000000H" report "I/O test mismatch"; 
+    --readbyte(rbyte); assert rbyte = "0000000L" report "I/O test mismatch"; 
+    
+    report "led test";
+    writebyte("10000101"); writebyte("00000000"); writebyte("00000001"); writebyte("00000010"); writebyte("00000011"); writebyte("00000100"); 
+    writebyte("10000110"); writebyte("00000101"); writebyte("00000000"); writebyte("00000001"); writebyte("00000010"); writebyte("00000011"); writebyte("00000100"); 
+    writebyte("10000111"); writebyte("00000000"); writebyte("00000101"); writebyte("00000000"); writebyte("00000001"); writebyte("00000010"); writebyte("00000011"); writebyte("00000100"); 
+
+    writebyte("10000110"); writebyte("00001001"); 
+    writebyte("00000000"); writebyte("11111111"); writebyte("00000000"); 
+    writebyte("11111111"); writebyte("00000000"); writebyte("00000000"); 
+    writebyte("00000000"); writebyte("00000000"); writebyte("11111111"); 
+    
     report "Test loopback (4 bytes)";
-    writebyte(loop4); readbyte(rbyte); assert rbyte=loop4 report "read mismatch" severity warning;
+    writebyte(loop4); readbyte(rbyte); assert rbyte=loop4 report "read mismatch" severity error;
     writebyte("00000000"); writebyte("00000001"); 
     writebyte("00000010"); writebyte("00000011");
-    readbyte(rbyte); assert rbyte="00000000" report "read mismatch" severity warning;
-    readbyte(rbyte); assert rbyte="00000001" report "read mismatch" severity warning;
-    readbyte(rbyte); assert rbyte="00000010" report "read mismatch" severity warning;
-    readbyte(rbyte); assert rbyte="00000011" report "read mismatch" severity warning;
+    readbyte(rbyte); assert rbyte="00000000" report "read mismatch" severity error;
+    readbyte(rbyte); assert rbyte="00000001" report "read mismatch" severity error;
+    readbyte(rbyte); assert rbyte="00000010" report "read mismatch" severity error;
+    readbyte(rbyte); assert rbyte="00000011" report "read mismatch" severity error;
     
     wait;
 end process stim_proc;
@@ -150,6 +183,7 @@ architecture beh of testbench is
 signal rst: std_logic;
 signal clk50: std_logic := '0';
 signal mdata,mdatai: std_logic_vector(7 downto 0);
+signal io: std_logic_vector(79 downto 0);
 signal mclk60,mrxfn,mtxen,mrdn,mwrn,moen,msndimm : std_logic;
 
 component ftdi_morphic 
@@ -182,7 +216,8 @@ component fifo_stim is
 	txen     : out std_logic;
 	rdn      : in  std_logic;
 	wrn      : in  std_logic;
-	oen      : in  std_logic
+	oen      : in  std_logic;
+	io		 : inout std_logic_vector(79 downto 0)
   );
 end component;
 
@@ -199,7 +234,8 @@ i_fifo : ftdi_morphic
       mrdn=>mrdn,
       mwrn=>mwrn,
       moen=>moen,
-      msndimm=>msndimm
+      msndimm=>msndimm,
+      io=>io
     );
 
 i_mfifo_stim: fifo_stim
@@ -215,7 +251,8 @@ i_mfifo_stim: fifo_stim
       txen=>mtxen,
       rdn=>mrdn,
       wrn=>mwrn,
-      oen=>moen
+      oen=>moen,
+      io=>io
     );
 
     

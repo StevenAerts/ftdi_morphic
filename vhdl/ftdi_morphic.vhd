@@ -61,36 +61,66 @@ component hs245_sif
     );
 end component;
 
+component decoder is
+   port (-- Inputs
+	  clk50     : in  std_logic;       -- 50MHz clock input
+      rst       : in  std_logic;       -- Active high reset
+
+      decin     : in 	std_logic_vector(7 downto 0);
+      dec_next	: in	std_logic;
+      
+      dec_islen : out	std_logic;
+      dec_isdata: out	std_logic;
+	  cmd		: out	std_logic_vector(4 downto 0);
+	  cmd_new	: out	std_logic
+  );
+end component;
+
+component application is
+   port (-- Inputs
+	  clk50     	: in  std_logic;       -- 50MHz clock input
+      rst       	: in  std_logic;       -- Active high reset
+
+      app_din   	: in 	std_logic_vector(7 downto 0);
+      app_din_rdy	: in	std_logic;
+      app_din_rd	: out	std_logic;
+
+      app_dout  	: out 	std_logic_vector(7 downto 0);
+      app_dout_rdy	: in	std_logic;
+      app_dout_wr	: out	std_logic;
+      
+      dec_next		: out	std_logic;
+      dec_islen 	: in	std_logic;
+      dec_isdata 	: in	std_logic;
+	  cmd			: in	std_logic_vector(4 downto 0);
+	  cmd_new		: in	std_logic;
+
+	  io			: inout std_logic_vector(79 downto 0)
+  );
+end component;
+
+
   signal mrxf,mtxe,moe,mrd,mwr : std_logic;
   signal mdatain, mdataout : std_logic_vector(7 downto 0);
   
-  signal s1_wr,s1_txe,s1_rd,s1_rxf,s1_mrd : std_logic;
-  signal s2_wr,s2_txe,s2_rd,s2_rxf,s2_mrd : std_logic;
+  signal s1_wr,s1_txe,s2_rd,s2_rxf : std_logic;
 
   signal reset_n : std_logic;
 
-  signal int_mdatain, int_mdataout : std_logic_vector(7 downto 0);
-  signal int_adatain, int_adataout : std_logic_vector(7 downto 0);
-
-  signal io_in, io_out, io_oe: std_logic_vector(79 downto 0);
-
-  signal bytes_left, bytes_left_next: integer range 0 to 65535;
-  signal cmd_saved, cmd_saved_next: std_logic_vector(4 downto 0);
-  signal need_bytes_msb, need_bytes_msb_next : std_logic;
-  signal need_bytes_lsb, need_bytes_lsb_next : std_logic;
+  signal s1_din, s2_dout : std_logic_vector(7 downto 0);
+  signal app_din, app_dout : std_logic_vector(7 downto 0);
+  signal app_din_rd, app_din_rdy: std_logic;
+  signal app_dout_wr, app_dout_rdy: std_logic;
+  
+  signal cmd: std_logic_vector(4 downto 0);
+  signal cmd_new, dec_islen, dec_isdata, dec_next : std_logic;
   
 begin
 
-io_in <= io;
-io_out(79 downto 1) <= (others =>'0');
-io_oe <= (0=>'1', others => '0');
-io_gen:	for i in io'range generate
-	io(i) <= io_out(i) when io_oe(i) = '1' else 'Z';
-end generate io_gen;
   
 mdata_in:	mdatain <= mdata;
 mdata_out: 	mdata <= mdataout when moe='0' else (others => 'Z');
-reset_inv:	reset_n <= not rst; -- polarity to programme over USB
+reset_inv:	reset_n <= not rst;
 mrxf_inv:	mrxf <= not mrxfn;
 mtxe_inv:	mtxe <= not mtxen;
 moe_inv:	moen <= not moe;
@@ -105,12 +135,12 @@ sync1 : sync_fifo
       s_clk    => mclk60,
       s_wr     => s1_wr,
       s_txe    => s1_txe,
-      s_dbin   => int_mdatain,
+      s_dbin   => s1_din,
 
       d_clk    => clk50,
-      d_rd     => s1_rd,
-      d_rxf    => s1_rxf,
-      d_dbout  => int_adatain
+      d_rd     => app_din_rd,
+      d_rxf    => app_din_rdy,
+      d_dbout  => app_din
    );
 
 sync2 : sync_fifo 
@@ -118,93 +148,15 @@ sync2 : sync_fifo
       reset_n  => reset_n,
 
       s_clk    => clk50,
-      s_wr     => s2_wr,
-      s_txe    => s2_txe,
-      s_dbin   => int_adataout,
+      s_wr     => app_dout_wr,
+      s_txe    => app_dout_rdy,
+      s_dbin   => app_dout,
 
       d_clk    => mclk60,
       d_rd     => s2_rd,
       d_rxf    => s2_rxf,
-      d_dbout  => int_mdataout
+      d_dbout  => s2_dout
    );
-   
-dummy_proc: process(clk50)
-begin
-  if rising_edge(clk50) then
-	if rst = '1' then
-	  bytes_left <= 0;
-	  cmd_saved <= (others => '0');
-	  need_bytes_msb <= '0';
-	  need_bytes_lsb <= '0';
-	else
-	  bytes_left <= bytes_left_next;
-	  cmd_saved  <= cmd_saved_next;
-	  need_bytes_msb <= need_bytes_msb_next;
-	  need_bytes_lsb <= need_bytes_lsb_next;
-	end if;
-	--io_out(0) <= io_in(1);
-  end if;
-end process dummy_proc;
-
-decoder:process(int_adatain, s1_rxf, s2_txe, bytes_left, cmd_saved, 
-	need_bytes_msb, need_bytes_lsb)
-begin
-  bytes_left_next <= bytes_left;
-  cmd_saved_next <= cmd_saved;
-  need_bytes_msb_next <= need_bytes_msb;
-  need_bytes_lsb_next <= need_bytes_lsb;
-  s1_rd <= '0'; s2_wr <= '0';
-  int_adataout <= (others => '0');
-  if s1_rxf = '1' and s2_txe = '1' then
-	s1_rd <= '1';
-    if need_bytes_msb = '1' then
-	  need_bytes_msb_next <= '0';
-	  bytes_left_next <= to_integer(unsigned(int_adatain&"00000000"));
-	  case cmd_saved is
-	    when "10101" | "10111" => 
-			s2_wr <= '1'; 
-			int_adataout <= int_adatain;
-		when others => NULL;
-	  end case;
-	elsif need_bytes_lsb = '1' then
-	  case cmd_saved is
-	    when "10101" | "10111" => 
-			s2_wr <= '1'; 
-			int_adataout <= int_adatain;
-		when others => NULL;
-	  end case;
-	  need_bytes_lsb_next <= '0';
-	  bytes_left_next <= to_integer(to_unsigned(bytes_left,16)(15 downto 7)&unsigned(int_adatain));
-	elsif bytes_left > 0 then
-	  bytes_left_next <= bytes_left - 1;
-	  case cmd_saved is
-	    when "10101" => 
-			s2_wr <= '1'; 
-			int_adataout <= int_adatain;
-	    when "10111" => 
-			s2_wr <= '1'; 
-			int_adataout <= not int_adatain;
-		when others => NULL;
-	  end case;
-    else
-	  cmd_saved_next <= int_adatain(7 downto 3);
-	  case int_adatain(7 downto 3) is
-	    when "10101" | "10111" => 
-			s2_wr <= '1'; 
-			int_adataout <= int_adatain;
-		when others => NULL;
-	  end case;
-	  if int_adatain(2 downto 0) = "111" then
-		need_bytes_msb_next <= '1';
-		need_bytes_lsb_next <= '1';
-	  elsif int_adatain(2 downto 0) = "110" then
-		need_bytes_lsb_next <= '1';
-	  else
-		bytes_left_next <= to_integer(unsigned(int_adatain(2 downto 0)));
-	  end if;
-    end if;
-  end if;
-end process;
 
 xfer1 : hs245_sif 
   port map(                                 
@@ -219,13 +171,49 @@ xfer1 : hs245_sif
     ext_datain => mdatain,
     ext_dataout => mdataout,
 
-    int_datain  => int_mdataout,
+    int_datain  => s2_dout,
     int_rxf     => s2_rxf,
     int_rd      => s2_rd,
-    int_dataout => int_mdatain,
+    int_dataout => s1_din,
     int_txe     => s1_txe,
     int_wr      => s1_wr
  );
+
+dec: decoder
+   port map(
+	  clk50		=> clk50,
+      rst       => rst,
+
+      decin     => app_din,
+      dec_next	=> dec_next,
+      
+      dec_islen => dec_islen,
+      dec_isdata => dec_isdata,
+	  cmd		=> cmd,
+	  cmd_new	=> cmd_new
+   );
+
+app: application
+   port map (
+	  clk50     	=> clk50,
+      rst       	=> rst,
+
+      app_din   	=> app_din,
+      app_din_rdy	=> app_din_rdy,
+      app_din_rd	=> app_din_rd,
+
+      app_dout  	=> app_dout,
+      app_dout_rdy	=> app_dout_rdy,
+      app_dout_wr	=> app_dout_wr,
+      
+      dec_next		=> dec_next,
+      dec_islen 	=> dec_islen,
+      dec_isdata 	=> dec_isdata,
+	  cmd			=> cmd,
+	  cmd_new		=> cmd_new,
+
+	  io			=> io
+  );
 
 end rtl;
 

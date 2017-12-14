@@ -283,6 +283,9 @@ set_location_assignment PIN_D15 -to io[76]
 set_location_assignment PIN_D16 -to io[77]
 set_location_assignment PIN_E14 -to io[78]
 set_location_assignment PIN_E16 -to io[79]
+set_global_assignment -name VHDL_FILE ../vhdl/led_driver.vhd
+set_global_assignment -name VHDL_FILE ../vhdl/decoder.vhd
+set_global_assignment -name VHDL_FILE ../vhdl/application.vhd
 set_global_assignment -name VHDL_FILE ../vhdl/syncflop.vhd
 set_global_assignment -name VHDL_FILE ../vhdl/sync_fifo.vhd
 set_global_assignment -name VHDL_FILE ../vhdl/hs245_sif.vhd

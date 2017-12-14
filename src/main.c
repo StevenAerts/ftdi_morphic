@@ -390,6 +390,19 @@ static void test(FT_HANDLE ftHandle)
 	
 	if(testdiff(loopback4, loopback4_result, -1, sizeof(loopback4)))
 		FTC_THROWE(APP_TEST, APP_TEST_LOOPBACK_FAILED);
+		
+	unsigned char ledcmd3leds[] = {
+		0x86, 3*3, 
+		0x80, 0x00, 0x00,
+		0x00, 0x80, 0x00,
+		0x00, 0x00, 0x80
+	};
+	
+	writeBytes(ftHandle, ledcmd3leds, sizeof(ledcmd3leds));
+	
+	if(clearRxBuffer(ftHandle) !=0)
+		FTC_THROWE(APP_TEST, APP_TEST_UNEXPECTED_RESPONSE_DATA);
+
 }
 
 
