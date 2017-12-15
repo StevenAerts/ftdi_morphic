@@ -67,45 +67,11 @@ component hs245_sif
 	);
 end component;
 
-
-component decoder is
-
-    port (
-        clk50               : in    std_logic;
-        rst                 : in    std_logic;
-
-        dec_din             : in    std_logic_vector(7 downto 0);
-        dec_din_rdy         : in    std_logic;
-        dec_din_rd          : out   std_logic;
-
-        dec_cmd             : out   std_logic_vector(4 downto 0);
-        dec_cmd_new         : out   std_logic;
-        
-        dec_iscmd           : out   std_logic;
-        dec_islen           : out   std_logic;
-        dec_isdata          : out   std_logic;
-        dec_islast          : out   std_logic;
-        
-        app_din            	: out   std_logic_vector(7 downto 0);
-        app_din_rdy        	: out   std_logic;
-        app_din_rd         	: in    std_logic
-    );
-end component;
-
-
 component application is
 
 	port (
 		clk50         		: in  	std_logic;
 		rst           		: in  	std_logic;
-
-        dec_cmd             : in    std_logic_vector(4 downto 0);
-        dec_cmd_new         : in    std_logic;
-        
-        dec_iscmd           : in    std_logic;
-        dec_islen           : in    std_logic;
-        dec_isdata          : in    std_logic;
-        dec_islast          : in    std_logic;
 
 		app_din       		: in    std_logic_vector(7 downto 0);
 		app_din_rdy   		: in    std_logic;
@@ -135,18 +101,6 @@ end component;
 	signal app_dout_wr		: std_logic;
 	signal app_dout_rdy		: std_logic;
 
-	signal dec_cmd			: std_logic_vector(4 downto 0);
-	signal dec_cmd_new		: std_logic;
-	
-	signal dec_iscmd		: std_logic;
-	signal dec_islen		: std_logic;
-	signal dec_isdata		: std_logic;
-	signal dec_islast 		: std_logic;
-	
-	signal dec_din			: std_logic_vector(7 downto 0);
-	signal dec_din_rdy		: std_logic;
-	signal dec_din_rd		: std_logic;
-  
 begin
 
 
@@ -179,9 +133,9 @@ sync1 : sync_fifo
 		s_dbin   			=> s1_din,
 
 		d_clk    			=> clk50,
-		d_rd     			=> dec_din_rd,
-		d_rxf    			=> dec_din_rdy,
-		d_dbout  			=> dec_din
+		d_rd     			=> app_din_rd,
+		d_rxf    			=> app_din_rdy,
+		d_dbout  			=> app_din
 	);
 
 
@@ -225,44 +179,12 @@ xfer1 : hs245_sif
 	);
 
 
-dec: decoder
-
-    port map(
-        clk50               => clk50,
-        rst                 => rst,
-
-		dec_din     		=> dec_din,
-		dec_din_rdy  		=> dec_din_rdy,
-		dec_din_rd			=> dec_din_rd,
-      
-        dec_cmd             => dec_cmd,
-        dec_cmd_new         => dec_cmd_new,
-        
-        dec_iscmd           => dec_iscmd,
-        dec_islen           => dec_islen,
-        dec_isdata          => dec_isdata,
-        dec_islast          => dec_islast,
-
-        app_din            	=> app_din,
-        app_din_rdy        	=> app_din_rdy,
-        app_din_rd         	=> app_din_rd
-	);
-
-
 app: application
 
 	port map (
 		clk50         		=> clk50,
 		rst           		=> rst,
-
-        dec_cmd             => dec_cmd,
-        dec_cmd_new         => dec_cmd_new,
-        
-        dec_iscmd           => dec_iscmd,
-        dec_islen           => dec_islen,
-        dec_isdata          => dec_isdata,
-        dec_islast          => dec_islast,
-
+		
 		app_din       		=> app_din,
 		app_din_rdy   		=> app_din_rdy,
 		app_din_rd    		=> app_din_rd,
