@@ -82,6 +82,7 @@ constant linvn: std_logic_vector(7 downto 0) := "10111110";
 variable rbyte: std_logic_vector(7 downto 0);
 
 begin
+	io <= (others => 'L');
     datai <= (others => '0'); rxfn <= '1'; txen <= '1';
 
     report "Test synchronization sequence";

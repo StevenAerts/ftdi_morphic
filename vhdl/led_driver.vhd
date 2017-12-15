@@ -16,6 +16,17 @@ end led_driver;
 
 architecture rtl of led_driver is
 
+-- datasheet 1
+--constant t0h 								: integer := 20; -- 400 ns
+--constant t0l 								: integer := 42; -- 850 ns
+--constant t1h 								: integer := 40; -- 800 ns
+--constant t1l 								: integer := 22; -- 450 ns
+-- datasheet 2
+constant t0h 								: integer := 18; -- 350 ns
+constant t0l 								: integer := 45; -- 900 ns
+constant t1h 								: integer := 45; -- 800 ns
+constant t1l 								: integer := 18; -- 350 ns
+
 signal	led_pulse_int, led_pulse_next		: std_logic;
 signal	led_bit_cnt, led_bit_cnt_next 		: integer range 0 to 7;
 signal	led_pulse_cnt, led_pulse_cnt_next 	: integer range 0 to 63;
@@ -56,7 +67,7 @@ begin
   led_byte_rd <= '0';
   
   -- counters, 
-  if led_pulse_cnt = 61 then
+  if led_pulse_cnt = (t0h+t0l-1) then
 	led_pulse_cnt_next <= 0;
 	if led_bit_cnt = 0 then
 		led_bit_cnt_next <= 7;
@@ -74,18 +85,18 @@ begin
 	when 0 => 
 	  if led_send = '1' then
 		led_state_next <= 1;
-		led_pulse_cnt_next <= 61;
+		led_pulse_cnt_next <= (t0h+t0l-1);
 		led_bit_cnt_next <= 0;
 		led_wait_cnt_next <= 0;
 	  end if;
 	when 1 =>
 	  if led_send = '0' then
 		led_state_next <= 2;
-	  elsif led_pulse_cnt = 61 and led_bit_cnt = 0 then					
+	  elsif led_pulse_cnt = (t0h+t0l-1) and led_bit_cnt = 0 then					
 		led_byte_rd <= '1';
 	  end if;
 	when 2 =>
-	  if led_bit_cnt = 0 and led_pulse_cnt = 39 then
+	  if led_bit_cnt = 0 and led_pulse_cnt = (t1h-1) then
 		led_wait_cnt_next <= 6;
 		led_state_next <= 3;
 	  end if;
@@ -98,13 +109,13 @@ begin
   end case;
    
   if (led_state = 1) or (led_state = 2) then 
-	if led_pulse_cnt = 61 then
+	if led_pulse_cnt = (t0h+t0l-1) then
 		led_pulse_next <= '1';
 	end if;
-	if led_byte(led_bit_cnt) = '0' and led_pulse_cnt = 19 then
+	if led_byte(led_bit_cnt) = '0' and led_pulse_cnt = (t0h-1) then
 		led_pulse_next <= '0';
 	end if;
-	if led_byte(led_bit_cnt) = '1' and led_pulse_cnt = 39 then
+	if led_byte(led_bit_cnt) = '1' and led_pulse_cnt = (t1h-1) then
 		led_pulse_next <= '0';
 	end if;
   end if; 
